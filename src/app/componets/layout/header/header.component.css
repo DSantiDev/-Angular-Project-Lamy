@@ -1,0 +1,368 @@
+/**header*/
+header {
+    padding: 3.2rem;
+    background: linear-gradient(#040406, #29166F);
+    margin: 0;
+    background-repeat: no-repeat;
+}
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+.container.logo-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    width: 100%;
+}
+nav.nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-left: 2rem;
+}
+    /**Logo*/
+img.logo {
+    width: 15.6rem;
+    border-radius: .5rem;
+}
+.container-logo {
+    padding-right: 0;
+}
+    /** Contenedor carrito y iniciar*/
+ .container-cartlog {
+    display: flex;
+    align-items: center;
+}
+.container-nav-cartlog {
+    display: flex;
+    flex-basis: 87%;
+}
+.main-menu {
+    list-style-type: none;
+    display: flex;
+    gap: 1rem;
+    font-size: 1.4rem;
+    margin: 0; 
+    padding: 0;
+    flex-wrap: wrap;
+}
+.menu-item:hover{
+    background:linear-gradient(#CD1023, #ca4250d5);
+    transform: background 1;  
+}
+.header-item:hover{
+    color: white;
+    transition: 1s;
+}
+li.menu-item {
+    background: linear-gradient(#a3a3a3,white );
+    border-radius: 1rem;
+    padding: .5rem;
+}
+.header-item {
+    text-decoration: none;
+    color: black;
+    padding: 1rem;
+}
+    /**Boton hamburguesa*/
+.btn-hamburguer{
+    display: none;
+}
+.btnh-toggle{
+    display: none;
+}
+    /**Estilo barra de busqueda*/
+.container-search {
+	transform: translate(5%,0%);
+	padding: 1rem;
+}
+.search {
+	outline: none;
+	box-sizing: border-box;
+	height: 5rem;
+	width: 0;
+	padding: 0 2rem;
+	color: #000;
+	border-radius: 5rem;
+	font-size: 1.4rem;
+	border: .1rem solid #D50000;
+	transition: all .7s ease;
+}
+::placeholder {
+    font-size: 1.75rem;
+	color: grey;
+}
+.btn-search {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 6rem;
+	height: 6rem;
+	background:#CD1023;
+	line-height: 6rem;
+	border-radius: 50%;
+	text-align: center;
+	cursor: pointer;
+	transition: .5s;
+}
+.btn i {
+	font-size: 2.5rem;
+	color: white;
+	line-height: 6rem;
+	transition: all .7s ease;
+}
+.container-search:hover input {
+	width: 38rem;
+}
+.container-search:hover i{
+	transform: rotate(-360deg);
+}
+.btn-success {
+    fill: currentColor;
+    width: 6rem; 
+    height: 4rem; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 1rem; 
+    position: relative; 
+    padding: 0; 
+    border: none; 
+    background: white;
+}
+.btn-success img {
+    width: 2.4rem; 
+    height: 2.4rem; 
+}
+.btn:hover{
+	background:linear-gradient(#CD1023, #ca4250d5);
+    transition: 1s;   
+}
+   
+    /**Estilo carrito de compras*/
+.btn-cart1{
+    display: none;
+}
+.btn-cart {
+    margin-left: 2rem;
+    cursor: pointer;
+}
+.cart-icon {
+    color: black;
+}
+.bi-cart-fill {
+    fill: currentColor; 
+    transition: fill 1s ease; 
+}
+
+.btn:hover .bi-cart-fill {
+    fill: white; 
+}
+.cart-number    {
+    position: absolute;
+    top: -1rem; 
+    right: -1rem; 
+    background-color: white;
+    color: black; 
+    border-radius: 50%;
+    width: 2rem; 
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem; 
+    font-weight: bold;
+    z-index: 10; 
+}
+   /** Cesta*/
+   .cart-toggle{
+    display: none;
+    }
+    .cart-panel {
+        position: fixed;
+        top: 0;
+        right: -100%; 
+        width: 30rem;
+        height: 100%;
+        background-color: white;
+        box-shadow: -.2rem 0 .5rem rgba(0, 0, 0, 0.5);
+        transition: right 0.3s ease;
+        padding: 2rem;
+        z-index: 1000;
+    }
+
+    #cart-toggle:checked ~ .cart-panel {
+        right: 0;
+    }
+    #cart-toggle:checked ~ .background{
+        display: flex;
+    }
+    .cart-panel h2 {
+        margin-top: 0;
+    }
+    .close-panel {
+        display: inline-block;
+        margin-top: 2rem;
+        color: #28a745;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    /** Estilos del botón de inicio de sesión */
+.login{
+    padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+.btn-login {
+    background:linear-gradient(#CD1023, #ca4250d5);
+    border-radius: 21rem;
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: white;
+    padding: 1rem; 
+    cursor: pointer;
+    transition: 1s;
+    font-weight: 600;
+    text-align: center; 
+
+}
+
+.btn-login:hover, 
+.btn-register:hover {
+    background: white;
+    color: black;
+}
+
+.btn-register {
+    display: inline-block;
+    background:linear-gradient(#CD1023, #ca4250d5);
+    border-radius: 21rem;
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: white;
+    padding: 1rem 2.2rem; 
+    margin-top: .5rem;
+    transition: 1s;
+    text-align: center; 
+    line-height: 1.4rem;
+}
+    /** Cuadro de incio sesion*/
+    
+.login-toggle {
+    display: none;
+}
+
+.container-log {
+    display: none; 
+    position: fixed;
+    width: 40rem; 
+    z-index: 2000;
+    right: .1rem;   
+}
+
+.log-content {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    position: relative;
+    width: 100%;
+    max-width: 30rem;   
+    margin: 1rem; 
+    border: .3rem solid #CD1023;
+}
+
+form {
+    display: flex;
+    flex-direction: column; 
+}
+
+.text-log {
+    margin-bottom: 1rem; 
+    padding: 0.5rem; 
+    border: .1rem solid #ccc; 
+    border-radius: .5rem; 
+}
+
+.btn-log {
+    background:linear-gradient(#CD1023, #ca4250d5);
+    color: white;
+    padding: .5rem;
+    border-radius: 1rem;
+    border: none;
+    font-weight: 600;
+    margin-bottom: 1rem; 
+}
+.btn-log:hover{
+    background: linear-gradient( #29166F, #31216b94);
+    transition: background 1s ease;
+}
+
+label.btnh-close {
+    display: none;
+}
+.btn-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background:linear-gradient(#CD1023, #ca4250d5);
+    border: none;
+    color: black;
+    border-radius: 50%;
+    padding: 0.5rem;
+    cursor: pointer;
+    font-size: 2rem;
+    transition: 1s;
+    display: flex;
+    justify-content: center;
+}
+.btn-close:hover{
+    background: linear-gradient( #29166F, #31216b94);
+    color: white;
+    transition: background 1s ease;
+}
+.login-toggle:checked ~ .container-log {
+    display: block;
+}
+.log-forget{
+    color: black; 
+    text-decoration: none; 
+    text-align: center;
+    display: block; 
+    font-weight: 600;
+    transition: .5s;
+}
+.log-forget:hover{
+    color: #CD1023;
+}
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.text-log {
+    width: 100%;
+    padding-right: 2rem; 
+}
+
+.toggle-password {
+    position: absolute;
+    right: 0.5rem; 
+    top: 50%;
+    transform: translateY(-65%);
+    cursor: pointer;
+    color: #333; 
+}
+.warning-message {
+    color: white;
+    background-color: #29166F;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: none; 
+    text-align: center;
+}

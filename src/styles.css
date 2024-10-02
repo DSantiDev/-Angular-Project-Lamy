@@ -1,1 +1,113 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: "roboto", "oswald";
+    font-size: 1.6rem; /* 16px */
+}
+html
+    {
+        font-size: 62.5%; /* 1rem = 10px */
+}
+p {
+    line-height: 1.4;
+    font-size: 1.4rem;
+}
+/**Load screen*/
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; 
+}
+.spinner {
+    border: .8rem solid #f3f3f3; 
+    border-top: .8rem solid #29166F; 
+    border-radius: 50%;
+    width: 5rem;
+    height: 5rem;
+    animation: spin 3s linear infinite;
+}
+
+    /** Animación del spinner */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}   
+
+/** Notice */
+.container-notice h1{
+    font-size: 1.5rem;
+}
+.ts-store-notice {
+    width: 100%;
+    background: linear-gradient(#CD1023, black);
+    color: white;
+    border: black;
+    border-width: 0 0 .1rem 0;
+    border-style: solid;
+    line-height: 3rem;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    text-align: center;
+}
+.ts-store-notice .container-notice {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width: 100%;
+}
+
+.ts-store-notice p {
+    margin: 0;
+    font-size: 1.25rem;
+    padding-left: 1rem; 
+}
+.close-labe-notice {
+    cursor: pointer;
+    font-size: 2rem; 
+    line-height: 1;
+    padding: 0 1rem;
+    color: white;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.close-checkbox {
+    display: none;
+}
+
+.close-checkbox:checked ~ .ts-store-notice {
+    display: none;
+}
+
+.flag {
+    display: inline;
+    border: none;
+    box-shadow: none;
+    height: 1em;
+    width: 1em;
+    margin: 0 0.07em;
+    vertical-align: -0.1em;
+    background: none;
+    padding: 0;
+}
+.container-notice svg.bi.bi-x-lg {
+    margin-left: 1rem;
+}
+.container-notice svg.bi.bi-x-lg:hover{
+    color: #CD1023;
+    transition: 1s;
+}

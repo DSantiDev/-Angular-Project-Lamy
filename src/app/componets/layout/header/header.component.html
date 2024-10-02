@@ -1,0 +1,104 @@
+<header class="header">
+    <div class="container logo-navbar">
+        <div class="container-logo">
+            <a href="#"><img class="logo" src="/public/logo.png" alt="imagen-logo" /></a>
+        </div>
+        <div class="btn-cart1" id="btn-cart1">
+            <button type="button" class="btn btn-success" title="Ver su cesta de la compra">
+                <a class="cart-icon" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                </svg>
+                </a>
+                <p class="cart-number">0</p>
+            </button>   
+        </div>
+        <label for="btnh-toggle" class="btn-hamburguer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+            </svg>
+        </label>
+        <input type="checkbox" id="btnh-toggle" class="btnh-toggle">
+        <div class="container-nav-cartlog">
+            <label for="btnh-toggle" class="btnh-close">    
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                </svg>
+            </label>
+            <nav class="nav" id="nav">
+                <ul class="main-menu" >
+                    <li class="menu-item" >
+                        <strong><a class="header-item" href="./servicios.html" >Servicios</a></strong>
+                    </li>
+                    <li class="menu-item">
+                        <strong><a class="header-item" href="./computadores.html" >Computadores</a></strong>
+                    </li>
+                    <li class="menu-item">
+                        <strong><a class="header-item" href="./impresiones.html" >Impresiones</a></strong>
+                    </li>
+                    <li class="menu-item">
+                        <strong><a class="header-item" href="./accesorios.html" >Accesorios</a></strong>
+                    </li>
+                </ul>              
+            </nav>
+            <div class="container-cartlog">
+                <div class="container-search">
+                    <input class="search" type="text" id="search-input" placeholder="Buscar productos">
+                    <div class="btn-search" id="search-button">
+                        <i class="fa fa-search"></i>
+                    </div>
+                </div> 
+                <div class="btn-cart">
+                    <input type="checkbox" id="cart-toggle" class="cart-toggle" />
+                    <label for="cart-toggle" class="btn btn-success cart-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                        </svg>
+                        <p class="cart-number">0</p>
+                    </label> 
+                    <label for="cart-toggle" class="background"></label>
+                    <div class="cart-panel">
+                        <label for="cart-toggle" class="btn-close">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                            </svg>
+                        </label>
+                        <h2>Tu cesta de la compra</h2>
+                        <p>No hay productos en el carrito.</p>                                
+                    </div>  
+                </div>
+                <div class="login">
+                    <label for="login-toggle" class="btn-login">Iniciar sesión</label>
+                    <input type="checkbox" id="login-toggle" class="login-toggle">
+                    <strong><a class="btn-register" href="./register.html">Registrarse</a></strong>
+                    <div class="container-log">
+                        <div class="log-content">
+                            <label for="login-toggle" class="btn-close">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                                </svg>
+                            </label>
+                            <form id="login-form" action="#">
+                                <label for="username"><strong>Correo electrónico:</strong></label>
+                                <input class="text-log" type="text" id="username" name="username" >
+                                <div id="username-warning" class="warning-message">Este campo es obligatorio</div>
+                                <div id="email-format-warning" class="warning-message">Formato de correo electrónico no válido</div>
+                                <label for="password"><strong>Contraseña:</strong></label>
+                                <div class="password-wrapper">
+                                    <input class="text-log" type="password" id="password" name="password" >
+                                    <span class="toggle-password">
+                                        <i class="fa fa-eye" id="eye-icon"></i>
+                                    </span>
+                                </div>
+                                <div id="password-warning" class="warning-message">Este campo es obligatorio</div>
+                                <button class="btn-log" type="submit">Entrar</button>
+                                <a class="log-forget" href="#">¿Olvidaste tu contraseña?</a>
+                            </form>
+                        </div>
+                    </div>
+                </div> 
+            </div> 
+        </div> 
+                           
+    </div>
+</header>
