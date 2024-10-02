@@ -1,7 +1,7 @@
 <header class="header">
     <div class="container logo-navbar">
         <div class="container-logo">
-            <a href="#"><img class="logo" src="/public/logo.png" alt="imagen-logo" /></a>
+            <a routerLink="/"><img class="logo" src="/public/logo.png" alt="imagen-logo" /></a>
         </div>
         <div class="btn-cart1" id="btn-cart1">
             <button type="button" class="btn btn-success" title="Ver su cesta de la compra">
@@ -28,16 +28,16 @@
             <nav class="nav" id="nav">
                 <ul class="main-menu" >
                     <li class="menu-item" >
-                        <strong><a class="header-item" href="./servicios.html" >Servicios</a></strong>
+                        <strong><a class="header-item" routerLink="#" >Servicios</a></strong>
                     </li>
                     <li class="menu-item">
-                        <strong><a class="header-item" href="./computadores.html" >Computadores</a></strong>
+                        <strong><a class="header-item" routerLink="/computers-category" >Computadores</a></strong>
                     </li>
                     <li class="menu-item">
-                        <strong><a class="header-item" href="./impresiones.html" >Impresiones</a></strong>
+                        <strong><a class="header-item" routerLink="#" >Impresiones</a></strong>
                     </li>
                     <li class="menu-item">
-                        <strong><a class="header-item" href="./accesorios.html" >Accesorios</a></strong>
+                        <strong><a class="header-item" routerLink="#" >Accesorios</a></strong>
                     </li>
                 </ul>              
             </nav>
@@ -70,7 +70,7 @@
                 <div class="login">
                     <label for="login-toggle" class="btn-login">Iniciar sesión</label>
                     <input type="checkbox" id="login-toggle" class="login-toggle">
-                    <strong><a class="btn-register" href="./register.html">Registrarse</a></strong>
+                    <strong><a class="btn-register" routerLink="register">Registrarse</a></strong>
                     <div class="container-log">
                         <div class="log-content">
                             <label for="login-toggle" class="btn-close">

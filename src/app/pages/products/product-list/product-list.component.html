@@ -1,0 +1,93 @@
+<main class="main">
+    <nav class="breadcrumb">
+        <ul>
+            <li><a href="./index.html">Inicio</a></li>
+            <li><a href="./computadores.html">Computadores</a></li>
+            <li><a href="./portatiles.html">Portatiles</a></li>
+        </ul>
+    </nav>
+    <div class="texto-p">
+        <h2>Portatiles</h2>
+    </div>
+    <div class="filters">
+        <div class="filter-container">
+            <input type="checkbox" id="filter-toggle" class="filter-toggle">
+            <label for="filter-toggle" class="filter-button">
+                <span class="button-text show-text">Mostrar filtros</span>
+                <span class="button-text hide-text">Ocultar filtros</span>
+                <i class="fas fa-filter"></i>
+            </label>
+            <label for="filter-toggle" class="filter-overlay"></label>
+            <div class="filter-sidebar">
+                <label for="filter-toggle" class="close-button">&times;</label>
+                <h3>Filtros</h3>
+                <div class="filter-section">
+                    <input type="checkbox" id="brand-toggle" class="sub-filter-toggle">
+                    <label for="brand-toggle" class="sub-filter-button">Marca</label>
+                    <div class="sub-filter-content">
+                        <label><input type="checkbox"> Marca 1</label><br>
+                        <label><input type="checkbox"> Marca 2</label><br>
+                        <label><input type="checkbox"> Marca 3</label><br>
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <input type="checkbox" id="price-toggle" class="sub-filter-toggle">
+                    <label for="price-toggle" class="sub-filter-button">Precio</label>
+                    <div class="sub-filter-content">
+                        <label><input type="checkbox"> $0 - $50</label><br>
+                        <label><input type="checkbox"> $51 - $100</label><br>
+                        <label><input type="checkbox"> $101 - $150</label><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="order-container">
+            <input type="checkbox" id="order-toggle" class="order-toggle">
+            <label for="order-toggle" class="order-button">
+                <span class="order-text">Ordenar por:</span>
+                <span class="order-text1">Orden predeterminado</span>
+            </label>
+            <label for="order-toggle" class="order-overlay"></label> 
+            <div class="order-list">
+                <label for="order-toggle" class="close-button">&times;</label>
+                
+                <div class="order-selection">
+                    <div class="sub-order-content">
+                        <label class="order-select-text"><input class="order-select" type="radio" name="order" value="Orden predeterminado" checked> Orden predeterminado</label><br>
+                        <label class="order-select-text"><input class="order-select" type="radio" name="order" value="Ordenar por popularidad"> Ordenar por popularidad</label><br>
+                        <label class="order-select-text"><input class="order-select" type="radio" name="order" value="Ordenar por puntuación media"> Ordenar por puntuación media</label><br>
+                        <label class="order-select-text"><input class="order-select" type="radio" name="order" value="Ordenar por los últimos"> Ordenar por los últimos</label><br>
+                        <label class="order-select-text"><input class="order-select" type="radio" name="order" value="Ordenar por precio: bajo a alto"> Ordenar por precio: bajo a alto</label><br>
+                        <label class="order-select-text"><input class="order-select" type="radio" name="order" value="Ordenar por precio: alto a bajo"> Ordenar por precio: alto a bajo</label><br>
+                        <label class="order-select-text"><input class="order-select" type="radio" name="order" value="Ordenar por más vendidos"> Ordenar por más vendidos</label><br>                             
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    <div class="card-container">
+        <div class="card">
+            <div class="card-img-container">
+                <img src="./images/portatil-a.png" alt="portatil-1" class="card-img">
+                <div class="card-icons">
+                    <a routerLink="/computers-category/product-list/product-detail">
+                    <i class="fas fa-search"></i>
+                    </a>
+                    <a routerLink="/computers-category/product-list/product-detail">
+                    <i class="fas fa-shopping-cart"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Producto 1</h3>
+                <p class="card-text">Descripcion producto.</p>
+                <div class="prices">
+                    <p class="card-price">$1'000.000</p>
+                </div>
+                <div class="btn-buy">
+                    <a routerLink="/computers-category/product-list/product-detail" class="card-button">Comprar</a>
+                </div>                       
+            </div>
+        </div> 
+    </div>      
+</main>
