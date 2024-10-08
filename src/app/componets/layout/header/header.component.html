@@ -1,7 +1,10 @@
 <header class="header">
     <div class="container logo-navbar">
         <div class="container-logo">
-            <a routerLink="/"><img class="logo" src="/public/logo.png" alt="imagen-logo" /></a>
+            <a 
+                [routerLink]="['/home']">
+                <img class="logo" src="assets/images/logo.png" alt="imagen-logo" />
+            </a>
         </div>
         <div class="btn-cart1" id="btn-cart1">
             <button type="button" class="btn btn-success" title="Ver su cesta de la compra">
@@ -31,7 +34,13 @@
                         <strong><a class="header-item" routerLink="#" >Servicios</a></strong>
                     </li>
                     <li class="menu-item">
-                        <strong><a class="header-item" routerLink="/computers-category" >Computadores</a></strong>
+                        <strong>
+                            <a 
+                                class="header-item" 
+                                [routerLink]="['/computers']"
+                                routerLinkActive="active"
+                                >Computadores</a>
+                        </strong>
                     </li>
                     <li class="menu-item">
                         <strong><a class="header-item" routerLink="#" >Impresiones</a></strong>
@@ -67,36 +76,8 @@
                         <p>No hay productos en el carrito.</p>                                
                     </div>  
                 </div>
-                <div class="login">
-                    <label for="login-toggle" class="btn-login">Iniciar sesión</label>
-                    <input type="checkbox" id="login-toggle" class="login-toggle">
-                    <strong><a class="btn-register" routerLink="register">Registrarse</a></strong>
-                    <div class="container-log">
-                        <div class="log-content">
-                            <label for="login-toggle" class="btn-close">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
-                                </svg>
-                            </label>
-                            <form id="login-form" action="#">
-                                <label for="username"><strong>Correo electrónico:</strong></label>
-                                <input class="text-log" type="text" id="username" name="username" >
-                                <div id="username-warning" class="warning-message">Este campo es obligatorio</div>
-                                <div id="email-format-warning" class="warning-message">Formato de correo electrónico no válido</div>
-                                <label for="password"><strong>Contraseña:</strong></label>
-                                <div class="password-wrapper">
-                                    <input class="text-log" type="password" id="password" name="password" >
-                                    <span class="toggle-password">
-                                        <i class="fa fa-eye" id="eye-icon"></i>
-                                    </span>
-                                </div>
-                                <div id="password-warning" class="warning-message">Este campo es obligatorio</div>
-                                <button class="btn-log" type="submit">Entrar</button>
-                                <a class="log-forget" href="#">¿Olvidaste tu contraseña?</a>
-                            </form>
-                        </div>
-                    </div>
-                </div> 
+                <app-login />
+                
             </div> 
         </div> 
                            

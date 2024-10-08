@@ -20,6 +20,8 @@
 .form-group {
     margin-bottom: 1.5rem;
     text-align: left;
+    margin-top: 2rem;
+
 }
 
 label {
@@ -71,11 +73,17 @@ input[type="tel"]:focus{
 
 .warning-message {
     display: none;
-    color: #D50000;
-    font-size: 1.2rem;
-    margin-top: 0.5rem;
+    color: red;
+    font-weight: 600;  
+    font-style: italic;
+    position: absolute;
 }
-
+.error{
+    color: red;
+    font-weight: 600;  
+    font-style: italic;
+    position: absolute;
+}
 .btn-register-submit {
     width: 100%;
     padding: 1rem;
@@ -87,6 +95,7 @@ input[type="tel"]:focus{
     font-family: 'Oswald', sans-serif;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-top: 1rem;
 }
 
 .btn-register-submit:hover {

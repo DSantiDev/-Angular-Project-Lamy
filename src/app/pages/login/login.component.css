@@ -1,0 +1,166 @@
+   /** Estilos del botón de inicio de sesión */
+   .login{
+    padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+.btn-login {
+    background:linear-gradient(#CD1023, #ca4250d5);
+    border-radius: 21rem;
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: white;
+    padding: 1rem; 
+    cursor: pointer;
+    transition: 1s;
+    font-weight: 600;
+    text-align: center; 
+
+}
+
+.btn-login:hover, 
+.btn-register:hover {
+    background: white;
+    color: black;
+}
+
+.btn-register {
+    display: inline-block;
+    background:linear-gradient(#CD1023, #ca4250d5);
+    border-radius: 21rem;
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: white;
+    padding: 1rem 2.2rem; 
+    margin-top: .5rem;
+    transition: 1s;
+    text-align: center; 
+    line-height: 1.4rem;
+}
+.error{
+    color: red;
+    font-weight: 600;  
+    font-style: italic;
+}
+.error-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/** Cuadro de incio sesion*/
+    
+.login-toggle {
+    display: none;
+}
+
+.container-log {
+    display: none; 
+    position: fixed;
+    width: 40rem; 
+    z-index: 2000;
+    right: .1rem;   
+}
+
+.log-content {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    position: relative;
+    width: 100%;
+    max-width: 30rem;   
+    margin: 1rem; 
+    border: .3rem solid #CD1023;
+}
+
+form {
+    display: flex;
+    flex-direction: column; 
+}
+
+.text-log {
+    margin-bottom: 1rem; 
+    padding: 0.5rem; 
+    border: .1rem solid #ccc; 
+    border-radius: .5rem; 
+}
+
+.btn-log {
+    background:linear-gradient(#CD1023, #ca4250d5);
+    color: white;
+    padding: .5rem;
+    border-radius: 1rem;
+    border: none;
+    font-weight: 600;
+    margin-bottom: 1rem; 
+}
+.btn-log:hover{
+    background: linear-gradient( #29166F, #31216b94);
+    transition: background 1s ease;
+}
+
+label.btnh-close {
+    display: none;
+}
+.btn-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background:linear-gradient(#CD1023, #ca4250d5);
+    border: none;
+    color: black;
+    border-radius: 50%;
+    padding: 0.5rem;
+    cursor: pointer;
+    font-size: 2rem;
+    transition: 1s;
+    display: flex;
+    justify-content: center;
+}
+.btn-close:hover{
+    background: linear-gradient( #29166F, #31216b94);
+    color: white;
+    transition: background 1s ease;
+}
+.login-toggle:checked ~ .container-log {
+    display: block;
+}
+.log-forget{
+    color: black; 
+    text-decoration: none; 
+    text-align: center;
+    display: block; 
+    font-weight: 600;
+    transition: .5s;
+}
+.log-forget:hover{
+    color: #CD1023;
+}
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.text-log {
+    width: 100%;
+    padding-right: 2rem; 
+}
+
+.toggle-password {
+    position: absolute;
+    right: 0.5rem; 
+    top: 50%;
+    transform: translateY(-65%);
+    cursor: pointer;
+    color: #333; 
+}
+.warning-message {
+    color: white;
+    background-color: #29166F;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: none; 
+    text-align: center;
+}
