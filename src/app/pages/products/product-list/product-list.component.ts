@@ -7,20 +7,21 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [FormsModule, CardsComponent, RouterLinkActive],
+  imports: [FormsModule, CardsComponent, RouterLink],
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
-  // Variables para manejar el estado del orden
   orderToggle = false;
-  selectedOrder = 'Orden predeterminado'; // Valor por defecto
-  
-  // Método para manejar el cambio en la selección de orden
+  selectedOrder = 'Orden predeterminado';
+
   onOrderChange(event: Event): void {
     const selectedRadio = (event.target as HTMLInputElement).value;
     this.selectedOrder = selectedRadio;
-    
-    // Aquí puedes agregar lógica adicional si necesitas hacer algo más con el orden seleccionado.
+    this.orderToggle = false;
+  }
+  toggleOrder(): void {
+    this.orderToggle = !this.orderToggle;
   }
 }
+

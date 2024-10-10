@@ -24,13 +24,12 @@ export class LoginComponent {
 
   handleSubmit() {
     if( this.formData.valid ) {
-      console.log(this.formData.value);
       this.authService.login( this.formData.value ).subscribe( ( data: Response ) => {
         console.log( data  );
 
     
 
-        this.formData.reset
+        this.formData.reset()
       });
 
     }
