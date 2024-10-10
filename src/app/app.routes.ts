@@ -14,7 +14,7 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent},
     { path: 'computers', component: ComputersComponent},
     { path: '404', component: PageNotFoundComponent},
-    { path: 'form', component: ProductFormComponent}, 
+    { path: 'products/form', component: ProductFormComponent}, 
     { path: 'computers/category', component: ProductListComponent},
     { path: 'computers/category/product', component: ProductDetailComponent},
     { path: '', redirectTo: 'home', pathMatch: 'full'},

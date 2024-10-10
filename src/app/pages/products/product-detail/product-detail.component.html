@@ -12,12 +12,12 @@
     </div>
     <div class="product-container">
         <div class="product-gallery">
-            <img src="./images/portatil-a.png" alt="Imagen principal" class="main-image">
+            <img src="/assets/images/portatil-a.png" alt="Imagen principal" class="main-image" [src]="mainImage">
             <div class="thumbnail-gallery">
-                <img src="./images/portatil-a.png" alt="Miniatura 1" class="thumbnail">
-                <img src="./images/portatil l.png" alt="Miniatura 1" class="thumbnail">
-                <img src="./images/portatil-g.png" alt="Miniatura 2" class="thumbnail">
-                <img src="./images/computador-t.png" alt="Miniatura 3" class="thumbnail">
+                <img src="/assets/images/portatil-a.png" alt="Miniatura 1" class="thumbnail" (click)="changeImage($event)">
+                <img src="/assets/images/portatil l.png" alt="Miniatura 2" class="thumbnail" (click)="changeImage($event)">
+                <img src="/assets/images/portatil-g.png" alt="Miniatura 3" class="thumbnail" (click)="changeImage($event)">
+                <img src="/assets/images/computador-t.png" alt="Miniatura 4" class="thumbnail" (click)="changeImage($event)">
             </div>
         </div>
         <div class="product-details">
@@ -25,112 +25,71 @@
             <p class="product-price">$1'070.000</p>  
             <p class="cantidad">Cantidad</p>
             <div class="quantity-container">
-                <button class="quantity-button decrease">-</button>
-                <input type="number" class="quantity-input" value="1" min="1">
-                <button class="quantity-button increase">+</button>
+                <button class="quantity-button decrease" (click)="decreaseQuantity()">-</button>
+                <input type="number" class="quantity-input" [(ngModel)]="quantity" min="1">
+                <button class="quantity-button increase" (click)="increaseQuantity()">+</button>
             </div> 
             <div class="product-actions">
                 <button class="btn-primary">Añadir al carrito</button>
                 <button class="btn-secondary">Comprar ahora</button>
             </div>
         </div>
-    </div>
-    
-        <div class="buttons-products">
-            <input type="radio" name="product-tabs" id="description-toggle" class="description-toggle">
-            <label for="description-toggle" class="tab ">Descripción</label>
-            <input type="radio" name="product-tabs" id="valoracion-toggle" class="valoracion-toggle">
-            <label for="valoracion-toggle" class="tab ">Valoraciones (0)</label>
-            <input type="radio" name="product-tabs" id="especificaciones-toggle" class="especificaciones-toggle">
-            <label for="especificaciones-toggle" class="tab">Especificaciones</label>
-        </div>
-        
-        
+    </div> 
     <div class="product-tabs">
         <div class="buttons-products">
             <div class="btn-description">
-                <input type="radio" name="product-tabs" id="description-toggle" class="description-toggle">
+                <input type="radio" name="product-tabs" id="description-toggle" class="description-toggle" checked>
                 <label for="description-toggle" class="tab ">Descripción</label>
                 <div class="tab-panel-des">
                     <h2>Descripción del producto</h2>
-                    <p class="description-pro">Portátil Lenovo con Pantalla De 14 Pulgadas, procesador Celeron N4020, con 4GB RAM y con almacenamiento de 1TB  para que no te quedes corto de espacio. Ideal para trabajo básico y para las tareas de la escuela o universidad. Llévatelo aun excelente precio y con la tranquilidad de 12 meses de garantía. Encuentra las mejores ofertas en  portátiles y computadores aquí en LAMY.</p>
+                    <p class="description-pro">Portátil Lenovo con Pantalla De 14 Pulgadas, procesador Celeron N4020...</p>
                 </div>
             </div>
             <div class="btn-valoracion">
                 <input type="radio" name="product-tabs" id="valoracion-toggle" class="valoracion-toggle">
-                <label for="valoracion-toggle" class="tab ">Valoraciones (0)</label>
+                <label for="valoracion-toggle" class="tab">Valoraciones ({{ ratings.length }})</label>
                 <div class="tab-panel-val">
                     <div class="rating-section">
                         <h3>Valoraciones</h3>
-                    
-                        <div class="rating-summary">
-                            <div class="average-rating">
-                                <span class="rating-number" id="average-rating">0.0</span>
-                                <span class="rating-stars" id="average-stars">
-                                    ★★★★★
-                                </span>
-                                <span class="rating-count" id="rating-count">Basado en 0 valoraciones</span>
-                            </div>
-                    
-                            <div class="rating-distribution">
-                                <div class="rating-bar">
-                                    <span>5 estrellas</span>
-                                    <div class="bar">
-                                        <div class="filled" id="rating-5" style="width: 0%;"></div>
-                                    </div>
-                                    <span class="percentage" id="rating-5-percentage">0%</span>
+                        <div class="average-rating">
+                            <span class="rating-number">{{ averageRating | number: '1.1-1' }}</span>
+                            <span class="rating-stars">
+                                <ng-container *ngFor="let star of stars">
+                                    ★
+                                </ng-container>
+                                <ng-container *ngFor="let star of starsEmpty">
+                                    ☆
+                                </ng-container>
+                            </span>
+                            <span class="rating-count">Basado en {{ ratings.length }} valoraciones</span>
+                        </div>
+            
+                        <div class="rating-distribution">
+                            <div class="rating-bar" *ngFor="let i of [5, 4, 3, 2, 1]">
+                                <span>{{ i }} estrellas</span>
+                                <div class="bar">
+                                    <div class="filled" [style.width]="getRatingPercentage(i) + '%'"></div>
                                 </div>
-                                <div class="rating-bar">
-                                    <span>4 estrellas</span>
-                                    <div class="bar">
-                                        <div class="filled" id="rating-4" style="width: 0%;"></div>
-                                    </div>
-                                    <span class="percentage" id="rating-4-percentage">0%</span>
-                                </div>
-                                <div class="rating-bar">
-                                    <span>3 estrellas</span>
-                                    <div class="bar">
-                                        <div class="filled" id="rating-3" style="width: 0%;"></div>
-                                    </div>
-                                    <span class="percentage" id="rating-3-percentage">0%</span>
-                                </div>
-                                <div class="rating-bar">
-                                    <span>2 estrellas</span>
-                                    <div class="bar">
-                                        <div class="filled" id="rating-2" style="width: 0%;"></div>
-                                    </div>
-                                    <span class="percentage" id="rating-2-percentage">0%</span>
-                                </div>
-                                <div class="rating-bar">
-                                    <span>1 estrella</span>
-                                    <div class="bar">
-                                        <div class="filled" id="rating-1" style="width: 0%;"></div>
-                                    </div>
-                                    <span class="percentage" id="rating-1-percentage">0%</span>
-                                </div>
+                                <span class="percentage">{{ getRatingPercentage(i) }}%</span>
                             </div>
                         </div>
-                    
-                        <div class="reviews" id="reviews">
-                            <h4>Comentarios recientes</h4>
-                        </div>
-                    
+            
                         <div class="submit-review">
                             <h4>Deja tu valoración</h4>
-                            <select id="rating" aria-label="Rating">
+                            <select [(ngModel)]="userRating" aria-label="Rating">
                                 <option value="5">★★★★★</option>
                                 <option value="4">★★★★☆</option>
                                 <option value="3">★★★☆☆</option>
                                 <option value="2">★★☆☆☆</option>
                                 <option value="1">★☆☆☆☆</option>
                             </select>
-                            <textarea id="review-text" placeholder="Escribe tu comentario aquí..."></textarea>
-                            <button class="submit-button" onclick="submitReview()">Enviar valoración</button>
+                            <textarea id="review-text" [(ngModel)]="reviewText" placeholder="Escribe tu comentario aquí..."></textarea>
+                            <button class="submit-button" (click)="submitReview()">Enviar valoración</button>
                         </div>
                     </div>
-                    
                 </div>
             </div>
+            
             <div class="btn-especificaciones">
                 <input type="radio" name="product-tabs" id="especificaciones-toggle" class="especificaciones-toggle">
                 <label for="especificaciones-toggle" class="tab">Especificaciones</label>
@@ -146,35 +105,11 @@
                                 <th class="product-attributes-item-label">Dimensiones</th>
                                 <td class="product-attributes-item-value">35 x 24 x 2 cm</td>
                             </tr>
-                            <tr class="table-esp">
-                                <th class="product-attributes-item-label">Material</th>
-                                <td class="product-attributes-item-value">Aluminio</td>
-                            </tr>
-                            <tr class="table-esp">
-                                <th class="product-attributes-item-label">Material</th>
-                                <td class="product-attributes-item-value">Aluminio</td>
-                            </tr>
-                            <tr class="table-esp">
-                                <th class="product-attributes-item-label">Material</th>
-                                <td class="product-attributes-item-value">Aluminio</td>
-                            </tr>
-                            <tr class="table-esp">
-                                <th class="product-attributes-item-label">Material</th>
-                                <td class="product-attributes-item-value">Aluminio</td>
-                            </tr>
-                            <tr class="table-esp">
-                                <th class="product-attributes-item-label">Material</th>
-                                <td class="product-attributes-item-value">Aluminio</td>
-                            </tr>
-                            <tr class="table-esp">
-                                <th class="product-attributes-item-label">Material</th>
-                                <td class="product-attributes-item-value">Aluminio</td>
-                            </tr>
+                            <!-- Additional specifications here -->
                         </tbody>
                     </table>
                 </div>
             </div>
-            
         </div>
     </div>
     <div class="same-products">
@@ -182,98 +117,10 @@
             <h2>Productos relacionados</h2>
         </div>
         <div class="cards-same-products">
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="./images/portatil-a.png" alt="portatil-1" class="card-img">
-                    <div class="card-icons">
-                        <a href="producto.html">
-                        <i class="fas fa-search"></i>
-                        </a>
-                        <a href="producto.html">
-                        <i class="fas fa-shopping-cart"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Producto 1</h3>
-                    <p class="card-text">Descripcion producto.</p>
-                    <div class="prices">
-                        <p class="card-price">$1'000.000</p>
-                    </div>
-                    <div class="btn-buy">
-                        <a href="./producto.html" class="card-button">Comprar</a>
-                    </div>                       
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="./images/portatil-a.png" alt="portatil-1" class="card-img">
-                    <div class="card-icons">
-                        <a href="producto.html">
-                        <i class="fas fa-search"></i>
-                        </a>
-                        <a href="producto.html">
-                        <i class="fas fa-shopping-cart"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Producto 2</h3>
-                    <p class="card-text">Descripcion producto.</p>
-                    <div class="prices">
-                        <p class="card-price">$1'000.000</p>
-                    </div>
-                    <div class="btn-buy">
-                        <a href="./producto.html" class="card-button">Comprar</a>
-                    </div>                       
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="./images/portatil-a.png" alt="portatil-1" class="card-img">
-                    <div class="card-icons">
-                        <a href="producto.html">
-                        <i class="fas fa-search"></i>
-                        </a>
-                        <a href="producto.html">
-                        <i class="fas fa-shopping-cart"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Producto 3</h3>
-                    <p class="card-text">Descripcion producto.</p>
-                    <div class="prices">
-                        <p class="card-price">$1'000.000</p>
-                    </div>
-                    <div class="btn-buy">
-                        <a href="./producto.html" class="card-button">Comprar</a>
-                    </div>                       
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-img-container">
-                    <img src="./images/portatil-a.png" alt="portatil-1" class="card-img">
-                    <div class="card-icons">
-                        <a href="producto.html">
-                        <i class="fas fa-search"></i>
-                        </a>
-                        <a href="producto.html">
-                        <i class="fas fa-shopping-cart"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Producto 4</h3>
-                    <p class="card-text">Descripcion producto.</p>
-                    <div class="prices">
-                        <p class="card-price">$1'000.000</p>
-                    </div>
-                    <div class="btn-buy">
-                        <a href="./producto.html" class="card-button">Comprar</a>
-                    </div>                       
-                </div>
-            </div>
+            <app-cards></app-cards>
+            <app-cards></app-cards>
+            <app-cards></app-cards>
+            <app-cards></app-cards>
         </div>
     </div>
 </main>

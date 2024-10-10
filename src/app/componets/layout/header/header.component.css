@@ -49,8 +49,7 @@ img.logo {
     flex-wrap: wrap;
 }
 .menu-item:hover{
-    background:linear-gradient(#CD1023, #ca4250d5);
-    transform: background;  
+    background:linear-gradient(#CD1023, #ca4250d5);  
 }
 .header-item:hover{
     color: white;

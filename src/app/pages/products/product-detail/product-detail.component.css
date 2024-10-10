@@ -449,9 +449,11 @@ button, select {
     background-color: #f9f9f9;
 }
 
+
 /**Productos Relacionados*/
 .same-products {
     margin-bottom: 3rem;
+    margin-top: 14rem;
 }
 .cards-same-products {
     display: flex;
@@ -562,6 +564,53 @@ button, select {
     border-radius: 1rem;
     visibility: 0;
 }
+input[type="radio"]:checked + label + div {
+    display: block; /* Muestra el panel correspondiente cuando el radio está seleccionado */
+}
+/**Texto principial*/
+.texto-p {
+    text-align: center; 
+    margin: 2rem 0; 
+    padding: 1rem; 
+    background: #f8f9fa;
+    border-radius: 0.5rem; 
+    }
+    
+    .texto-p h2 {
+    font-size: 2.5rem; 
+    font-weight: bold; 
+    color: #000000; 
+    margin: 0; 
+    }
+    
+    .texto-p h2::before  {
+    content: '';
+    display: block;
+    width: 50%; 
+    height: .5rem;
+    background: #000000; 
+    margin: .5rem auto; 
+    border-radius: 1rem; 
+    transition: transform 0.3s ease; 
+    }
+    .texto-p h2::after  {
+    content: '';
+    display: block;
+    width: 50%; 
+    height: .5rem;
+    background: #000000; 
+    margin: .5rem auto; 
+    border-radius: 1rem; 
+    transition: transform 0.3s ease; 
+    }
+    
+    .texto-p:hover h2::after {
+    transform: scaleX(.5); 
+    }
+    .texto-p:hover h2::before {
+    transform: scaleX(.5); 
+    }
+ 
 @media (max-width: 768px) {
 .card-container {
     gap: 2rem;

@@ -1,14 +1,16 @@
 <main class="main">
     <nav class="breadcrumb">
-        <ul>
-            <li><a href="./index.html">Inicio</a></li>
-            <li><a href="./computadores.html">Computadores</a></li>
-            <li><a href="./portatiles.html">Portatiles</a></li>
-        </ul>
+      <ul>
+        <li><a routerLink="/">Inicio</a></li>
+        <li><a routerLink="/computadores">Computadores</a></li>
+        <li><a routerLink="/portatiles">Portatiles</a></li>
+      </ul>
     </nav>
+    
     <div class="texto-p">
-        <h2>Portatiles</h2>
+      <h2>Portatiles</h2>
     </div>
+  
     <div class="filters">
         <div class="filter-container">
             <input type="checkbox" id="filter-toggle" class="filter-toggle">
@@ -42,38 +44,62 @@
             </div>
         </div>
         <div class="order-container">
-            <input type="checkbox" id="order-toggle" class="order-toggle">
+            <input type="checkbox" id="order-toggle" class="order-toggle" [(ngModel)]="orderToggle">
             <label for="order-toggle" class="order-button">
-                <span class="order-text">Ordenar por:</span>
-                <span class="order-text1">Orden predeterminado</span>
-            </label>
-            <label for="order-toggle" class="order-overlay"></label> 
+              <span class="order-text">Ordenar por:</span>
+              <span class="order-text1">{{ selectedOrder }}</span>
+            </label>    
+            <label for="order-toggle" class="order-overlay"></label>
             <div class="order-list">
-                <label for="order-toggle" class="close-button">&times;</label>
-                
-                <div class="order-selection">
-                    <div class="sub-order-content">
-                        <label class="order-select-text"><input class="order-select" type="radio" name="order" value="Orden predeterminado" checked> Orden predeterminado</label><br>
-                        <label class="order-select-text"><input class="order-select" type="radio" name="order" value="Ordenar por popularidad"> Ordenar por popularidad</label><br>
-                        <label class="order-select-text"><input class="order-select" type="radio" name="order" value="Ordenar por puntuación media"> Ordenar por puntuación media</label><br>
-                        <label class="order-select-text"><input class="order-select" type="radio" name="order" value="Ordenar por los últimos"> Ordenar por los últimos</label><br>
-                        <label class="order-select-text"><input class="order-select" type="radio" name="order" value="Ordenar por precio: bajo a alto"> Ordenar por precio: bajo a alto</label><br>
-                        <label class="order-select-text"><input class="order-select" type="radio" name="order" value="Ordenar por precio: alto a bajo"> Ordenar por precio: alto a bajo</label><br>
-                        <label class="order-select-text"><input class="order-select" type="radio" name="order" value="Ordenar por más vendidos"> Ordenar por más vendidos</label><br>                             
-                    </div>
+              <label for="order-toggle" class="close-button">&times;</label>
+              <div class="order-selection">
+                <div class="sub-order-content">
+                  <label class="order-select-text">
+                    <input type="radio" name="order" value="Orden predeterminado" [(ngModel)]="selectedOrder" (change)="onOrderChange($event)">
+                    Orden predeterminado
+                  </label>
+                  <label class="order-select-text">
+                    <input type="radio" name="order" value="Ordenar por popularidad" [(ngModel)]="selectedOrder" (change)="onOrderChange($event)">
+                    Ordenar por popularidad
+                  </label>
+                  <label class="order-select-text">
+                    <input type="radio" name="order" value="Ordenar por puntuación media" [(ngModel)]="selectedOrder" (change)="onOrderChange($event)">
+                    Ordenar por puntuación media
+                  </label>
+                  <label class="order-select-text">
+                    <input type="radio" name="order" value="Ordenar por los últimos" [(ngModel)]="selectedOrder" (change)="onOrderChange($event)">
+                    Ordenar por los últimos
+                  </label>
+                  <label class="order-select-text">
+                    <input type="radio" name="order" value="Ordenar por precio: bajo a alto" [(ngModel)]="selectedOrder" (change)="onOrderChange($event)">
+                    Ordenar por precio: bajo a alto
+                  </label>
+                  <label class="order-select-text">
+                    <input type="radio" name="order" value="Ordenar por precio: alto a bajo" [(ngModel)]="selectedOrder" (change)="onOrderChange($event)">
+                    Ordenar por precio: alto a bajo
+                  </label>
+                  <label class="order-select-text">
+                    <input type="radio" name="order" value="Ordenar por más vendidos" [(ngModel)]="selectedOrder" (change)="onOrderChange($event)">
+                    Ordenar por más vendidos
+                  </label>
                 </div>
+              </div>
             </div>
         </div>
-    </div>  
+    </div>
     <div class="card-container">
-        <app-cards />
-        <app-cards />
-        <app-cards />
-        <app-cards /> 
-        <app-cards />
-        <app-cards />
-        <app-cards />
-        <app-cards />
-        <app-cards />
-    </div>      
-</main>
+      <div class="cards">
+        <app-cards></app-cards>
+      </div>
+      <div class="cards">
+        <app-cards></app-cards>
+      </div>
+      <div class="cards">
+        <app-cards></app-cards>
+      </div>
+      <div class="cards">
+        <app-cards></app-cards>
+      </div>
+    </div>
+  </main>
+  

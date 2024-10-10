@@ -1,20 +1,23 @@
 <main class="main">
     <div class="carousel">
-        <div class="carousel-wrapper">
-            <div class="carousel-item"><img src="assets/images/slider-1.png" alt="Slide 1"></div>
-            <div class="carousel-item"><img src="https://via.placeholder.com/800x300?text=Slide+2" alt="Slide 2"></div>
-            <div class="carousel-item"><img src="https://via.placeholder.com/800x300?text=Slide+3" alt="Slide 3"></div>
-        </div>
-        <div class="carousel-prev"></div>
-        <div class="carousel-next"></div>
-    </div> 
+      <div #carouselWrapper class="carousel-wrapper">
+        <div class="carousel-item"><img src="assets/images/slider-1.png" alt="Slide 1"></div>
+        <div class="carousel-item"><img src="https://via.placeholder.com/800x300?text=Slide+2" alt="Slide 2"></div>
+        <div class="carousel-item"><img src="https://via.placeholder.com/800x300?text=Slide+3" alt="Slide 3"></div>
+      </div>
+      <div #prevButton class="carousel-prev"></div>
+      <div #nextButton class="carousel-next"></div>
+    </div>
+    
     <div class="texto-p">
-        <h2>Ofertas</h2>
+      <h2>Ofertas</h2>
     </div>
+    
     <div class="card-container">
-        <app-cards-oferts />
-        <app-cards-oferts />
-        <app-cards-oferts />
-        <app-cards-oferts />
+      <app-cards-oferts></app-cards-oferts>
+      <app-cards-oferts></app-cards-oferts>
+      <app-cards-oferts></app-cards-oferts>
+      <app-cards-oferts></app-cards-oferts>
     </div>
-</main>
+  </main>
+  
