@@ -26,9 +26,6 @@ export class LoginComponent {
     if( this.formData.valid ) {
       this.authService.login( this.formData.value ).subscribe( (data: string|boolean|undefined)=> {
         console.log( data  );
-
-    
-
         this.formData.reset()
       });
 

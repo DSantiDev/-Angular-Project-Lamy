@@ -72,3 +72,11 @@
         </div>
     </div>
 </form>
+<div class="modal" [ngClass]="{'show': showModal}">
+    <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h2>¡Registro Exitoso!</h2>
+        <p>Producto registrado correctamente.</p>
+        <button class="modal-btn" (click)="handleAccept()">Aceptar</button> <!-- Cambiado aquí -->
+    </div>
+</div>

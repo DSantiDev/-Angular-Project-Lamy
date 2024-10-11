@@ -6,8 +6,5 @@ export interface User {
     address: string,
     password: string,
     role?: string,
-    createdAt?: string,
-    updatedAt?: string,
-    __v?: number,
     _id?: string
 }

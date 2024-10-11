@@ -1,19 +1,21 @@
-import { NgIf } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductService } from '../../../services/product.service';
+import { Router } from '@angular/router'; // Asegúrate de tener esto importado
 
 @Component({
   selector: 'app-product-form',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule, NgIf, CommonModule],
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css'] 
 })
 export class ProductFormComponent {
   productForm!: FormGroup;
+  showModal: boolean = false;
   
-  constructor(private productService: ProductService) { 
+  constructor(private productService: ProductService, private router: Router) { // Inyección correcta del Router
     this.productForm = new FormGroup({
       name: new FormControl('', [ Validators.required ]),
       description: new FormControl(''),
@@ -27,18 +29,25 @@ export class ProductFormComponent {
   onSubmit() {
     if (this.productForm.valid) {
       const formData = this.productForm.value;
-      console.log('Datos del formulario:', formData);
-
-      this.productService.registerProduct(formData).subscribe(success => {
-        if (success) {
-          console.log('Producto registrado exitosamente');
-          this.productForm.reset();
-        } else {
-          console.error('Error al registrar el producto');
+      this.productService.registerProduct(formData).subscribe(
+        response => {
+          console.log('Producto registrado exitosamente'); 
+          this.showModal = true; 
+        },
+        error => {
+          console.error('Error al registrar el producto:', error); 
         }
-      });
+      );
     } else {
       console.log('El formulario no es válido');
     }
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
+  handleAccept() {
+    this.closeModal();         
+    this.productForm.reset();
   }
 }

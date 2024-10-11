@@ -53,15 +53,15 @@ export class RegisterComponent {
         this.authService.registerUser(this.formData.value).subscribe({
             next: (data) => {
                 this.showModal = true;  
-                this.emailAlreadyRegistered = false; // Resetea el estado al éxito
-                this.formData.reset(); // Mueve esta línea aquí
+                this.emailAlreadyRegistered = false; 
+                this.formData.reset(); 
             },
             error: (err) => {
-                if (err.status === 409) { // Suponiendo que el servidor envía un status 409 para el correo existente
-                    this.emailAlreadyRegistered = true; // Indica que el correo ya está registrado
-                    this.formData.get('username')?.setErrors({ emailTaken: true }); // Marcamos el error en el formControl
+                if (err.status === 409) { 
+                    this.emailAlreadyRegistered = true; 
+                    this.formData.get('username')?.setErrors({ emailTaken: true }); 
                 } else {
-                    console.error('Error al registrar:', err); // Manejo de otros errores
+                    console.error('Error al registrar:', err);
                 }
             }
         });
