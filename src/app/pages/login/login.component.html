@@ -1,56 +1,53 @@
 <div class="login">
-    <label for="login-toggle" class="btn-login">Iniciar sesión</label>
-    <input type="checkbox" id="login-toggle" class="login-toggle">
-    <strong><a class="btn-register" routerLink="register">Registrarse</a></strong>
-    <div class="container-log">
-        <div class="log-content">
-            <label for="login-toggle" class="btn-close">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
-                </svg>
-            </label>
-            <form id="login-form" action="#" 
-            [formGroup]="formData"
-            (ngSubmit)="handleSubmit()"
-            class="form form-login">
-               
-                <label for="username"><strong>Correo electrónico*:</strong></label>
-                <div class="error-text">
-                    <input class="text-log" type="text" id="loginusername" name="username" formControlName="username">
-                    <div class="error">
-                        @if( formData.get( 'username' )?.invalid && ( formData.get( 'username' )?.dirty || formData.get( 'username' )?.touched ) ) {
-                            @if( formData.get( 'username' )?.errors?.[ 'required' ] ) {
-                                <small>El campo 'email' es obligatorio</small>
-                            }
-                            @if( formData.get( 'username' )?.errors?.[ 'email' ] ) {
-                                <small>Email con formato no valido</small>
-                            }
-                        }
+    <ng-container *ngIf="!isLoggedIn; else loggedInTemplate">
+        <label for="login-toggle" class="btn-login">Iniciar sesión</label>
+        <input type="checkbox" id="login-toggle" class="login-toggle">
+        <strong><a class="btn-register" routerLink="register">Registrarse</a></strong>
+        <div class="container-log">
+            <div class="log-content">
+                <label for="login-toggle" class="btn-close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                    </svg>
+                </label>
+                <form id="login-form" action="#" 
+                      [formGroup]="formData"
+                      (ngSubmit)="handleSubmit()"
+                      class="form form-login">
+                    <label for="username"><strong>Correo electrónico*:</strong></label>
+                    <div class="error-text">
+                        <input class="text-log" type="text" id="loginusername" name="username" formControlName="username">
+                        <div class="error">
+                            <div *ngIf="formData.get('username')?.invalid && (formData.get('username')?.dirty || formData.get('username')?.touched)">
+                                <small *ngIf="formData.get('username')?.errors?.['required']">El campo 'email' es obligatorio</small>
+                                <small *ngIf="formData.get('username')?.errors?.['email']">Email con formato no válido</small>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <label for="password"><strong>Contraseña:</strong></label>
-                <div class="password-wrapper error-text"  >
-                    <input autocomplete="off" class="text-log" type="password" id="loginpassword" name="password" formControlName="password">
-                    <span class="toggle-password" onclick="toggleConfirmPassword()">
-                        <i class="fa fa-eye" id="eye-icon-confirm"></i>
-                    </span>
-                    <div class="error">
-                        @if( formData.get( 'password' )?.invalid && ( formData.get( 'password' )?.dirty || formData.get( 'password' )?.touched ) ) {
-                            @if( formData.get( 'password' )?.errors?.[ 'required' ] ) {
-                                <small>El campo 'password' es obligatorio</small>
-                            }
-                            @if( formData.get( 'password' )?.errors?.[ 'minlength' ] ) {
-                                <small>El password debe tener minimo 8 caracteres</small>
-                            }
-                            @if( formData.get( 'password' )?.errors?.[ 'maxlength' ] ) {
-                                <small>El password debe tener maximo 20 caracteres</small>
-                            }
-                        }
+                    <label for="password"><strong>Contraseña:</strong></label>
+                    <div class="password-wrapper error-text">
+                        <input autocomplete="off" [type]="showLoginPassword ? 'text' : 'password'" class="text-log" type="password" id="loginpassword" name="password" formControlName="password">
+                        <span class="toggle-password" (click)="toggleLoginPassword()">
+                            <i class="fa" [ngClass]="showLoginPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+                        </span>
+                        <div class="error">
+                            <div *ngIf="formData.get('password')?.invalid && (formData.get('password')?.dirty || formData.get('password')?.touched)">
+                                <small *ngIf="formData.get('password')?.errors?.['required']">El campo 'password' es obligatorio</small>
+                                <small *ngIf="formData.get('password')?.errors?.['minlength']">El password debe tener mínimo 8 caracteres</small>
+                                <small *ngIf="formData.get('password')?.errors?.['maxlength']">El password debe tener máximo 20 caracteres</small>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <button class="btn-log" type="submit" [disabled]="formData.invalid">Entrar</button>
-                <a class="log-forget" href="#">¿Olvidaste tu contraseña?</a>
-            </form>
+                    <button class="btn-log" type="submit" [disabled]="formData.invalid">Entrar</button>
+                    <a class="log-forget" href="#">¿Olvidaste tu contraseña?</a>
+                </form>
+            </div>
         </div>
-    </div>
-</div> 
+    </ng-container>
+    <ng-template #loggedInTemplate>
+        <div>
+            <strong routerLink="perfil" class="btn-profile">Perfil</strong>
+            <a  class="btn-logout" (click)="logout()">Cerrar sesión</a>
+        </div>
+    </ng-template>
+</div>

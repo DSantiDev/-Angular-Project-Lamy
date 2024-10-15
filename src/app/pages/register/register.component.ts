@@ -61,7 +61,7 @@ export class RegisterComponent {
                     this.emailAlreadyRegistered = true; 
                     this.formData.get('username')?.setErrors({ emailTaken: true }); 
                 } else {
-                    console.error('Error al registrar:', err);
+                    console.error('Error al registrar:', err); 
                 }
             }
         });

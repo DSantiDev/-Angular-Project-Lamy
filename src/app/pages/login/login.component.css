@@ -19,6 +19,34 @@
 
 }
 
+.btn-logout{
+    display: inline-block;
+    background:linear-gradient(#CD1023, #ca4250d5);
+    border-radius: 21rem;
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: white;
+    padding: 1rem 2.2rem; 
+    margin-top: .5rem;
+    transition: 1s;
+    text-align: center; 
+    line-height: 1.4rem;
+}
+.btn-profile { 
+    background:linear-gradient(#CD1023, #ca4250d5);
+    border-radius: 21rem;
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: white;
+    padding: 1rem; 
+    cursor: pointer;
+    transition: 1s;
+    font-weight: 600;
+    text-align: center; 
+}
+
+.btn-logout:hover,
+.btn-profile:hover, 
 .btn-login:hover, 
 .btn-register:hover {
     background: white;
@@ -42,6 +70,8 @@
     color: red;
     font-weight: 600;  
     font-style: italic;
+    height: 2rem;
+    width: 100%;
 }
 .error-text {
     display: flex;
@@ -79,7 +109,6 @@ form {
 }
 
 .text-log {
-    margin-bottom: 1rem; 
     padding: 0.5rem; 
     border: .1rem solid #ccc; 
     border-radius: .5rem; 
@@ -150,7 +179,7 @@ label.btnh-close {
 .toggle-password {
     position: absolute;
     right: 0.5rem; 
-    top: 50%;
+    top: 1.5rem;
     transform: translateY(-65%);
     cursor: pointer;
     color: #333; 

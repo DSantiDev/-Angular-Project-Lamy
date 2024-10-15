@@ -12,20 +12,22 @@ export class AuthService {
 
   constructor( private http: HttpClient ) { }
 
-  registerUser ( newUser: User ): Observable< boolean|undefined > {
-    return this.http.post<Response>( 'http://localhost:3000/api/auth/register', newUser )
-    .pipe( 
-     map((data) => data.ok   )
-      
+  registerUser(newUser: User): Observable<boolean> {
+  return this.http.post<Response>('http://localhost:3000/api/auth/register', newUser)
+    .pipe(
+      map((data) => {
+        return data.ok
+      }) 
     );
-  }
+}
+
   login( credenciales: User ) : Observable< string|boolean|undefined > {
     return this.http.post<Response>( 'http://localhost:3000/api/auth/login', 
       credenciales)
       .pipe( 
       tap( ( data: Response)   => {
         if ( data.token ) {
-          localStorage.setItem( 'token', data.token )           
+          localStorage.setItem( 'token', data.token );      
         }
         return data;
       })
@@ -33,5 +35,11 @@ export class AuthService {
       ,catchError( error =>  of(false))
       
     );
+  }
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token'); 
+  }
+  logout(): void {
+    localStorage.removeItem('token'); 
   }
 }
