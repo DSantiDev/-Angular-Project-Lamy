@@ -1,0 +1,24 @@
+<main class="main-profile">
+    
+  <div class="contenido-perfil">
+    <aside class="barra-lateral">
+      <ul>
+        <li [class.activo]="seccionActual === 'perfil'" (click)="seleccionarSeccion('perfil')">Mi perfil</li>
+        <li [class.activo]="seccionActual === 'compras'" (click)="seleccionarSeccion('compras')">Compras</li>
+        <li [class.activo]="seccionActual === 'metodosPago'" (click)="seleccionarSeccion('metodosPago')">Métodos de Pago</li>
+        <li ><a routerLinkActive="active" routerLink="/dashboard" routerLinkActive="activo">Admin</a></li>
+      </ul>
+    </aside>
+    <div class="contenido-principal">
+      <ng-container *ngIf="seccionActual === 'perfil'">
+        <app-profile />
+      </ng-container>
+      <ng-container *ngIf="seccionActual === 'compras'">
+        <app-shopping />
+      </ng-container>
+      <ng-container *ngIf="seccionActual === 'metodosPago'">
+        <app-pays />
+      </ng-container>
+    </div>
+  </div>
+</main>

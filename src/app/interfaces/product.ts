@@ -6,6 +6,7 @@ export interface Product {
     category: string,
     urlImage?: string,
     state?: string,
+    userId: string,
     createdAt?: string,
     updatedAt?: string,
     __v?: number,

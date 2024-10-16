@@ -21,6 +21,15 @@ export class AuthService {
     );
 }
 
+ editUser(editUser: User): Observable<boolean> {
+  return this.http.post<Response>('http://localhost:3000/api/auth/edit', editUser)
+    .pipe(
+      map((data) => {
+        return data.ok
+      }) 
+    );
+}
+  
   login( credenciales: User ) : Observable< string|boolean|undefined > {
     return this.http.post<Response>( 'http://localhost:3000/api/auth/login', 
       credenciales)

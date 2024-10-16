@@ -5,13 +5,13 @@ import { ProductService } from '../../../services/product.service';
 import { Router, RouterLink } from '@angular/router'; // Asegúrate de tener esto importado
 
 @Component({
-  selector: 'app-product-form',
+  selector: 'app-product-edit',
   standalone: true,
   imports: [ReactiveFormsModule, NgIf, CommonModule, RouterLink],
-  templateUrl: './product-form.component.html',
-  styleUrls: ['./product-form.component.css'] 
+  templateUrl: './product-edit.component.html',
+  styleUrl: './product-edit.component.css'
 })
-export class ProductFormComponent {
+export class ProductEditComponent {
   productForm!: FormGroup;
   showModal: boolean = false;
   

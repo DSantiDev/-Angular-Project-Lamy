@@ -177,6 +177,9 @@ li.menu-item {
     z-index: 10; 
 }
    /** Cesta*/
+   .cart-toggle1{
+    display: none;
+    }
    .cart-toggle{
     display: none;
     }
@@ -192,7 +195,12 @@ li.menu-item {
         padding: 2rem;
         z-index: 1000;
     }
-
+    #cart-toggle1:checked ~ .cart-panel {
+        right: 0;
+    }
+    #cart-toggle1:checked ~ .background{
+        display: flex;
+    }
     #cart-toggle:checked ~ .cart-panel {
         right: 0;
     }

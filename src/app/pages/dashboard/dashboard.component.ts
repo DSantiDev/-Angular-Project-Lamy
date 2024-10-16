@@ -1,12 +1,21 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common'; 
+import { ProductFormComponent } from '../products/product-form/product-form.component';
+import { RouterLink } from '@angular/router';
+import { CreateProductComponent } from '../../componets/layout/create-product/create-product.component';
+import { UserViewComponent } from "../../componets/layout/user-view/user-view.component";
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, ProductFormComponent, RouterLink, CreateProductComponent, UserViewComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
+  seccionActual: string = 'perfil';
 
+  seleccionarSeccion(seccion: string): void {
+    this.seccionActual = seccion;
+  }
 }
