@@ -1,5 +1,5 @@
 .user-selector {
-    margin: 20px;
+    margin: 2rem;
   }
   
   .user-selector table {
@@ -8,13 +8,13 @@
   }
   
   .user-selector th, .user-selector td {
-    border: 1px solid #ccc;
-    padding: 10px;
+    border: .1rem solid #ccc;
+    padding: 1rem;
     text-align: left;
   }
   
   .user-selector button {
-    margin-right: 10px;
+    margin-right: 1rem;
   }
   
   .btn-detalle {

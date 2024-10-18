@@ -20,13 +20,13 @@ export class UserEditComponent {
   showConfirmPassword: boolean = false;  
   passwordMismatch: boolean = false;  
   emailAlreadyRegistered: boolean = false;
-  showModal: boolean = false;  // Controlar la visibilidad del modal
+  showModal: boolean = false;  
 
   constructor(private authService: AuthService, private router: Router) {
     this.formData = new FormGroup({
       name: new FormControl('', [Validators.required]),
       lastname: new FormControl('', [Validators.required]),
-      username: new FormControl('', [Validators.required, Validators.email]),
+      username: new FormControl({ value: '', disabled: true }),
       phone: new FormControl('', [Validators.required, Validators.minLength(10)]),
       address: new FormControl('', [Validators.required]),
       rol: new FormControl('', [Validators.required]),

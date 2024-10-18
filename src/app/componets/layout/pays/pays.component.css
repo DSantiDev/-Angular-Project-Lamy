@@ -68,3 +68,17 @@
     background-color: #c82333;
   }
   
+  .btn-detalle {
+    background-color: #29166F;
+    color: #fff;
+    border: none;
+    padding: .8rem 1.2rem;
+    border-radius: .4rem;
+    cursor: pointer;
+    border-radius: 3rem;
+    text-decoration: none;
+  }
+  
+  .btn-pay {
+    margin-top: 2rem;
+}

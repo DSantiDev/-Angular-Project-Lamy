@@ -167,7 +167,12 @@ input[type="tel"]:focus{
   .close:hover {
     color: #29166F;
   }
-  
+   svg.bi.bi-arrow-left {
+    color: black;
+    position: absolute;
+    left: 43rem;
+    top: 22rem;
+}
 /* Estilos adaptativos para móviles */
 @media (max-width: 768px) {
     .register-container {

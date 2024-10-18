@@ -14,9 +14,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './user-profile.component.css'
 })
 export class UserProfileComponent {
-  seccionActual: string = 'perfil';
+  selectedSection: string = 'perfil';
 
-  seleccionarSeccion(seccion: string): void {
-    this.seccionActual = seccion;
+  selectSection(section: string) {
+    this.selectedSection = section;
   }
 }

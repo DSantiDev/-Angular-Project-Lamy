@@ -3,20 +3,26 @@
   <div class="contenido-perfil">
     <aside class="barra-lateral">
       <ul>
-        <li [class.activo]="seccionActual === 'perfil'" (click)="seleccionarSeccion('perfil')">Mi perfil</li>
-        <li [class.activo]="seccionActual === 'compras'" (click)="seleccionarSeccion('compras')">Compras</li>
-        <li [class.activo]="seccionActual === 'metodosPago'" (click)="seleccionarSeccion('metodosPago')">Métodos de Pago</li>
+        <li [ngClass]="{ 'active': selectedSection === 'perfil' }" (click)="selectSection('perfil')">
+          Mi perfil
+      </li>
+      <li [ngClass]="{ 'active': selectedSection === 'compras' }" (click)="selectSection('compras')">
+          Compras
+      </li>
+      <li [ngClass]="{ 'active': selectedSection === 'metodosPago' }" (click)="selectSection('metodosPago')">
+          Métodos de Pago
+      </li>
         <li ><a routerLinkActive="active" routerLink="/dashboard" routerLinkActive="activo">Admin</a></li>
       </ul>
     </aside>
     <div class="contenido-principal">
-      <ng-container *ngIf="seccionActual === 'perfil'">
+      <ng-container *ngIf="selectedSection === 'perfil'">
         <app-profile />
       </ng-container>
-      <ng-container *ngIf="seccionActual === 'compras'">
+      <ng-container *ngIf="selectedSection === 'compras'">
         <app-shopping />
       </ng-container>
-      <ng-container *ngIf="seccionActual === 'metodosPago'">
+      <ng-container *ngIf="selectedSection === 'metodosPago'">
         <app-pays />
       </ng-container>
     </div>

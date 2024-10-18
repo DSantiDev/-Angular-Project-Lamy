@@ -9,20 +9,19 @@
               </svg>
             </a>
           </li>
-          <li [class.activo]="seccionActual === 'products'" (click)="seleccionarSeccion('products')">
+          <li [ngClass]="{ 'active': selectedSection === 'products' }" (click)="selectSection('products')">
             Productos
           </li>
-          <li [class.activo]="seccionActual === 'usuarios'" (click)="seleccionarSeccion('usuarios')">
+          <li [ngClass]="{ 'active': selectedSection === 'usuarios' }" (click)="selectSection('usuarios')">
             Usuarios
-          </li>
-        
+          </li>       
         </ul>
       </aside>
       <div class="contenido-principal">
-        <ng-container *ngIf="seccionActual === 'products'">
+        <ng-container *ngIf="selectedSection === 'products'">
           <app-create-product />
         </ng-container>
-        <ng-container *ngIf="seccionActual === 'usuarios'">
+        <ng-container *ngIf="selectedSection === 'usuarios'">
           <app-user-view />
         </ng-container>
       </div>

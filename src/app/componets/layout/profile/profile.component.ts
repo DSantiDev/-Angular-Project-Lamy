@@ -18,16 +18,18 @@ import { CommonModule } from '@angular/common';
 export class ProfileComponent {
   formData!: FormGroup;
   showPassword: boolean = false; 
+  showActualPassword: boolean = false; 
   showConfirmPassword: boolean = false;  
   passwordMismatch: boolean = false;  
   emailAlreadyRegistered: boolean = false;
-  showModal: boolean = false;  // Controlar la visibilidad del modal
-
+  showModal: boolean = false; 
+  
   constructor(private authService: AuthService, private router: Router) {
     this.formData = new FormGroup({
       name: new FormControl('', [Validators.required]),
       lastname: new FormControl('', [Validators.required]),
-      username: new FormControl('', [Validators.required, Validators.email]),
+      username: new FormControl({ value: '', disabled: true }),
+      actualPassword: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]),
       password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]),
       confirmPassword: new FormControl('', [Validators.required]),
       phone: new FormControl('', [Validators.required, Validators.minLength(10)]),
@@ -43,6 +45,10 @@ export class ProfileComponent {
 
   togglePassword() {
     this.showPassword = !this.showPassword;
+  }
+
+  toggleActualPassword() {
+    this.showActualPassword = !this.showActualPassword;
   }
 
   toggleConfirmPassword() {

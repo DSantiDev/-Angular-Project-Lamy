@@ -13,9 +13,9 @@ import { UserViewComponent } from "../../componets/layout/user-view/user-view.co
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
-  seccionActual: string = 'perfil';
+  selectedSection: string = 'products';
 
-  seleccionarSeccion(seccion: string): void {
-    this.seccionActual = seccion;
+  selectSection(section: string) {
+    this.selectedSection = section;
   }
 }

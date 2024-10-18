@@ -21,12 +21,15 @@ export class AuthService {
     );
 }
 
- editUser(editUser: User): Observable<boolean> {
+ editUser(editUser: User): Observable< boolean | string > {
   return this.http.post<Response>('http://localhost:3000/api/auth/edit', editUser)
     .pipe(
       map((data) => {
         return data.ok
-      }) 
+      }),
+      catchError( error =>  {
+        return of ('error')
+      })
     );
 }
   
@@ -41,7 +44,9 @@ export class AuthService {
         return data;
       })
       ,map(  data => data.token  )
-      ,catchError( error =>  of(false))
+      ,catchError( error =>  {
+        return of ('error')
+      })
       
     );
   }
