@@ -43,9 +43,14 @@ export class AuthService {
         }
         return data;
       })
-      ,map(  data => data.token  )
+      ,map(  (data) => {
+        if(!data.ok){
+          return data.msg
+        }
+        return 'Se logeo correctamente'
+      } )
       ,catchError( error =>  {
-        return of ('error')
+        return of ('error en el servidor')
       })
       
     );

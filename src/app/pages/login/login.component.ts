@@ -15,6 +15,7 @@ export class LoginComponent {
   formData!: FormGroup;
   isLoggedIn: boolean = false
   showLoginPassword: boolean = false; 
+  message: string|undefined|boolean;
 
   constructor(private authService: AuthService) {
     this.formData = new FormGroup({
@@ -33,9 +34,15 @@ export class LoginComponent {
     if (this.formData.valid) {
       this.authService.login(this.formData.value).subscribe((data: string | boolean | undefined) => {
         console.log(data);
+        this.message = data;
+        setTimeout(() => {
+          this.message = ''
+        }, 3000);
+
         if (data) {
           this.isLoggedIn = true;
           this.formData.reset();
+          
         }
       });
     }

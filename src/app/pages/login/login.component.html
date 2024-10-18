@@ -41,6 +41,9 @@
                     <button class="btn-log" type="submit" [disabled]="formData.invalid">Entrar</button>
                     <a class="log-forget" href="#">¿Olvidaste tu contraseña?</a>
                 </form>
+                @if (message) {
+                    <span class="error"> {{ message }}</span>
+                }
             </div>
         </div>
     </ng-container>
@@ -50,4 +53,5 @@
             <a  class="btn-logout" (click)="logout()">Cerrar sesión</a>
         </div>
     </ng-template>
+    
 </div>
