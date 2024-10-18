@@ -30,6 +30,11 @@ img.logo {
 .container-logo {
     padding-right: 0;
 }
+.welcome{
+    color: white;
+    font-size: 2rem;
+    width: 25rem;
+}
     /** Contenedor carrito y iniciar*/
  .container-cartlog {
     display: flex;

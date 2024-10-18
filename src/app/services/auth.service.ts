@@ -9,8 +9,13 @@ import { User } from '../interfaces/user';
 })
 export class AuthService {
 
+  private authUserData!: User; 
 
   constructor( private http: HttpClient ) { }
+
+  get authUser(){
+    return{...this.authUserData}
+  }
 
   registerUser(newUser: User): Observable<boolean> {
   return this.http.post<Response>('http://localhost:3000/api/auth/register', newUser)
@@ -39,9 +44,12 @@ export class AuthService {
       .pipe( 
       tap( ( data: Response)   => {
         if ( data.token ) {
-          localStorage.setItem( 'token', data.token );      
+          localStorage.setItem( 'token', data.token );
+          this.authUserData = data.data!;
+
         }
         return data;
+        
       })
       ,map(  (data) => {
         if(!data.ok){
