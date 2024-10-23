@@ -20,13 +20,17 @@ export class ProductService {
     return this.http.post<{ success: boolean, msg: string }>('http://localhost:3000/api/products', productData, { headers })
         .pipe(
             tap((response) => {
-                console.log('Respuesta del servidor:', response); // Imprimir la respuesta del servidor
+                console.log('Respuesta del servidor:', response); 
             }),
             catchError(error => {
                 console.error('Error al registrar el producto:', error);
                 return of({ success: false, msg: 'Error al registrar producto' });
             })
         );
-}
+    }
+
+    getAllProducts(){
+    return this.http.get<any>('http://localhost:3000/api/products')
+    }
 
 }

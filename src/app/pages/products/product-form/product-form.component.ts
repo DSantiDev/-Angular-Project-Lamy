@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductService } from '../../../services/product.service';
 import { Router, RouterLink } from '@angular/router'; // Asegúrate de tener esto importado
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-form',
@@ -12,10 +13,11 @@ import { Router, RouterLink } from '@angular/router'; // Asegúrate de tener est
   styleUrls: ['./product-form.component.css'] 
 })
 export class ProductFormComponent {
+  suscription!: Subscription;
   productForm!: FormGroup;
   showModal: boolean = false;
   
-  constructor(private productService: ProductService, private router: Router) { // Inyección correcta del Router
+  constructor(private productService: ProductService, private router: Router) { 
     this.productForm = new FormGroup({
       name: new FormControl('', [ Validators.required ]),
       description: new FormControl(''),
@@ -29,7 +31,7 @@ export class ProductFormComponent {
   onSubmit() {
     if (this.productForm.valid) {
       const formData = this.productForm.value;
-      this.productService.registerProduct(formData).subscribe(
+      this.suscription = this.productService.registerProduct(formData).subscribe(
         response => {
           console.log('Producto registrado exitosamente'); 
           this.showModal = true; 
@@ -50,4 +52,9 @@ export class ProductFormComponent {
     this.closeModal();         
     this.productForm.reset();
   }
+  ngOnDestroy(){
+    if (this.suscription) {
+      this.suscription.unsubscribe()
+    }
+   }
 }

@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  suscribtion!: Subscription;
+  suscription!: Subscription;
   formData!: FormGroup;
   isLoggedIn: boolean = false
   showLoginPassword: boolean = false; 
@@ -32,7 +32,6 @@ export class LoginComponent {
   }
 
   get userData(): User | null {
-    // Obtenemos datos del usuario autenticado
     return this.authService.userData;  
   }
 
@@ -41,24 +40,16 @@ export class LoginComponent {
   }
 
   handleSubmit() {
-    console.log(this.formData.value);
-      this.suscribtion = this.authService.login( this.formData.value ).subscribe( ( data ) => {
-        console.log( data );
-
+      this.suscription = this.authService.login( this.formData.value ).subscribe( ( data ) => {
         if ( typeof data === 'string' ) {
           this.message = data;
         } else {
           this.message = 'Ingresando al sistema...';
-
-          setTimeout( () => {
-            this.router.navigateByUrl( 'perfil' );   // Redireccionamos al dashboard
-          }, 4000 );
         }
 
-        /** Ocultamos los mensajes que se visualizan en el formulario */
         setTimeout( () => {
           this.message = '';
-        }, 2000 );
+        }, 3000 );
 
       });
 
@@ -73,6 +64,8 @@ export class LoginComponent {
       } );
     }
     ngOnDestroy(){
-      this.suscribtion.unsubscribe()
-    }
+      if (this.suscription) {
+        this.suscription.unsubscribe()
+      }
+     }
 }

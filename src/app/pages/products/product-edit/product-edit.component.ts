@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductService } from '../../../services/product.service';
 import { Router, RouterLink } from '@angular/router'; // Asegúrate de tener esto importado
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-edit',
@@ -12,6 +13,7 @@ import { Router, RouterLink } from '@angular/router'; // Asegúrate de tener est
   styleUrl: './product-edit.component.css'
 })
 export class ProductEditComponent {
+  suscription!: Subscription;
   productForm!: FormGroup;
   showModal: boolean = false;
   
@@ -29,7 +31,7 @@ export class ProductEditComponent {
   onSubmit() {
     if (this.productForm.valid) {
       const formData = this.productForm.value;
-      this.productService.registerProduct(formData).subscribe(
+      this.suscription = this.productService.registerProduct(formData).subscribe(
         response => {
           console.log('Producto registrado exitosamente'); 
           this.showModal = true; 
@@ -50,4 +52,9 @@ export class ProductEditComponent {
     this.closeModal();         
     this.productForm.reset();
   }
+  ngOnDestroy(){
+    if (this.suscription) {
+      this.suscription.unsubscribe()
+    }
+   }
 }

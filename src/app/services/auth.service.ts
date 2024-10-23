@@ -14,8 +14,9 @@ export class AuthService {
   constructor( private http: HttpClient ) { }
 
   get userData(): User | null {
-    const storedData = localStorage.getItem('authUserData');
-    return this._authUserData || ( storedData && storedData !== 'undefined' ? JSON.parse(storedData) : null);
+    const storedData = localStorage.getItem('authUserData') || null;
+    this._authUserData = storedData ? JSON.parse( storedData ) : null;
+    return this._authUserData;
   }
 
   registerUser(newUser: User): Observable<boolean> {

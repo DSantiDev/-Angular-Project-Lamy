@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router'; 
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -15,6 +16,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './user-edit.component.css'
 })
 export class UserEditComponent {
+  suscription!: Subscription;
   formData!: FormGroup;
   showPassword: boolean = false; 
   showConfirmPassword: boolean = false;  
@@ -37,7 +39,7 @@ export class UserEditComponent {
 
   handleSubmit() {
     if (this.formData.valid) {
-        this.authService.editUser(this.formData.value).subscribe({
+        this.suscription = this.authService.editUser(this.formData.value).subscribe({
             next: (data) => {
                 this.showModal = true;  
                 this.emailAlreadyRegistered = false; 
@@ -64,4 +66,9 @@ export class UserEditComponent {
     this.closeModal();
     this.router.navigate(['/home']);  
   }
+  ngOnDestroy(){
+    if (this.suscription) {
+      this.suscription.unsubscribe()
+    }
+   }
 }
