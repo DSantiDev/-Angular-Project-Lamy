@@ -1,8 +1,9 @@
 <div class="login">
-    <ng-container *ngIf="!isLoggedIn; else loggedInTemplate">
+    @if (!userData) {
         <label for="login-toggle" class="btn-login">Iniciar sesión</label>
         <input type="checkbox" id="login-toggle" class="login-toggle">
         <strong><a class="btn-register" routerLink="register">Registrarse</a></strong>
+    }
         <div class="container-log">
             <div class="log-content">
                 <label for="login-toggle" class="btn-close">
@@ -46,12 +47,9 @@
                 }
             </div>
         </div>
-    </ng-container>
-    <ng-template #loggedInTemplate>
-        <div>
-            <strong routerLink="perfil" class="btn-profile">Perfil</strong>
-            <a  class="btn-logout" (click)="logout()">Cerrar sesión</a>
-        </div>
-    </ng-template>
-    
+
+        @if (userData) {
+            <label  class="btn-profile">Perfil</label>
+            <strong><a class="btn-logout" >Cerrar sesión</a></strong>
+        }
 </div>

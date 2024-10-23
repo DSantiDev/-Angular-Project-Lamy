@@ -32,8 +32,10 @@ img.logo {
 }
 .welcome{
     color: white;
-    font-size: 2rem;
-    width: 25rem;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 3rem;
+    left: 4.2rem;
 }
     /** Contenedor carrito y iniciar*/
  .container-cartlog {
@@ -227,6 +229,9 @@ li.menu-item {
         padding: .5rem;
         background: #CD1023;
         color: white;
+    }
+    .btnh-close{
+        display: none;
     }
     
 @media (max-width: 768px) {

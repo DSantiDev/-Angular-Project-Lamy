@@ -21,7 +21,7 @@ export class CreateProductComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    // Aquí puedes obtener los productos de tu servicio
+
     this.products = [
       { id: 1, name: 'Producto 1', price: 100 },
       { id: 2, name: 'Producto 2', price: 200 },

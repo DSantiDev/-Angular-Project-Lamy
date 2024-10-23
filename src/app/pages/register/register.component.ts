@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router'; 
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -14,6 +15,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  suscription!: Subscription;
   formData!: FormGroup;
   showPassword: boolean = false; 
   showConfirmPassword: boolean = false;  
@@ -50,7 +52,7 @@ export class RegisterComponent {
   handleSubmit() {
     this.validatePasswords();
     if (this.formData.valid && !this.passwordMismatch) {
-        this.authService.registerUser(this.formData.value).subscribe({
+        this.suscription = this.authService.registerUser(this.formData.value).subscribe({
             next: (data) => {
                 this.showModal = true;  
                 this.emailAlreadyRegistered = false; 
@@ -67,7 +69,11 @@ export class RegisterComponent {
         });
     }
 }
-
+ ngOnDestroy(){
+  if (this.suscription) {
+    this.suscription.unsubscribe()
+  }
+ }
 
   closeModal() {
     this.showModal = false;

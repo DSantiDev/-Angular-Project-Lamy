@@ -18,6 +18,6 @@ export class HeaderComponent {
 
   }
   get authUser(){
-    return this.authServices.authUser;
+    return this.authServices.userData;
   }
 }
