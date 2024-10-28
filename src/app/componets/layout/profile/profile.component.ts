@@ -44,8 +44,8 @@ export class ProfileComponent implements OnInit {
       lastname: new FormControl('', [Validators.required]),
       username: new FormControl({ value: '', disabled: true }),
       actualPassword: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]),
-      confirmPassword: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.minLength(8), Validators.maxLength(20)]),
+      confirmPassword: new FormControl('', []),
       phone: new FormControl('', [Validators.required, Validators.minLength(10)]),
       address: new FormControl('', [Validators.required])
     });
@@ -101,23 +101,29 @@ loadUserData(): void {
   handleSubmit() {
     this.validatePasswords();
     if (this.formData.valid && !this.passwordMismatch) {
-        this.authService.editUser(this.formData.value).subscribe({
-            next: (data) => {
-                this.showModal = true;  
-                this.emailAlreadyRegistered = false; 
-                this.formData.reset(); 
-            },
-            error: (err) => {
-                if (err.status === 409) { 
-                    this.emailAlreadyRegistered = true; 
-                    this.formData.get('username')?.setErrors({ emailTaken: true }); 
-                } else {
-                    console.error('Error al editar:', err); 
-                }
-            }
-        });
+      const userId = JSON.parse(localStorage.getItem('authUserData') || '{}')._id; 
+      const userData: User = {
+        ...this.formData.value,
+        _id: userId 
+      };
+
+      this.userService.editUser(userId, userData).subscribe({
+        next: (data: Response) => { 
+          this.showModal = true;  
+          this.emailAlreadyRegistered = false; 
+          this.formData.reset(); 
+        },
+        error: (err) => {
+          if (err.status === 409) { 
+            this.emailAlreadyRegistered = true; 
+            this.formData.get('username')?.setErrors({ emailTaken: true }); 
+          } else {
+            console.error('Error al editar:', err); 
+          }
+        }
+      });
     }
-}
+  }
 
 
   closeModal() {

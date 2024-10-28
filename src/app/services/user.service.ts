@@ -52,13 +52,14 @@ export class UserService {
         return this.http.get<Response>(`http://localhost:3000/api/users/${userId}`, { headers });
     }
 
-    editUser(userId: string, userData: User): Observable<any> { 
+    editUser(userId: string, userData: User): Observable<Response> { 
         const token = localStorage.getItem('token');
         const headers = new HttpHeaders({
             'X-Token': token ? token : '',
         });
-        return this.http.patch(`http://localhost:3000/api/users/${userId}`, userData, { headers });
+        return this.http.patch<Response>(`http://localhost:3000/api/users/${userId}`, userData, { headers });
     }
+    
     deleteUser(userId: string): Observable<ResponsePro> {
         const token = localStorage.getItem('token');
         const headers = new HttpHeaders({
