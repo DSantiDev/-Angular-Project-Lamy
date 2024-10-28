@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Observer, tap, of, map, catchError } from 'rxjs';
 import { Product } from '../interfaces/product';
+import { ResponsePro } from '../interfaces/response';
 
 
 @Injectable({
@@ -29,8 +30,44 @@ export class ProductService {
         );
     }
 
-    getAllProducts(){
-    return this.http.get<any>('http://localhost:3000/api/products')
+    getAllProducts(): Observable<Product[]> {
+        return this.http.get<{ ok: boolean, data: Product[] }>('http://localhost:3000/api/products')
+            .pipe(
+                map(response => {
+                    if (response.ok) {
+                        return response.data; 
+                    } else {
+                        console.error('La respuesta no es correcta:', response);
+                        return [];
+                    }
+                }),
+                catchError(error => {
+                    console.error('Error al obtener los productos:', error);
+                    return of([]);  
+                })
+            );
     }
 
+    getProduct(productId: string): Observable<ResponsePro> {
+    return this.http.get<ResponsePro>(`http://localhost:3000/api/products/${productId}`);
+    }
+    
+    getProductById(productId: string): Observable<ResponsePro> {
+        return this.http.get<ResponsePro>(`http://localhost:3000/api/products/${productId}`);
+    }
+
+    editProduct(productId: string, productData: Product): Observable<any> { 
+        const token = localStorage.getItem('token');
+        const headers = new HttpHeaders({
+            'X-Token': token ? token : '',
+        });
+        return this.http.patch(`http://localhost:3000/api/products/${productId}`, productData, { headers });
+    }
+    deleteProduct(productId: string): Observable<ResponsePro> {
+        const token = localStorage.getItem('token');
+        const headers = new HttpHeaders({
+            'X-Token': token ? token : '',
+        });
+        return this.http.delete<ResponsePro>(`http://localhost:3000/api/products/${productId}`, { headers });
+    }
 }

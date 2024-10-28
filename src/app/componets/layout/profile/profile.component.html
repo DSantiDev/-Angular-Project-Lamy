@@ -64,8 +64,6 @@
                 </div>
                 <div class="error" *ngIf="formData.get('password')?.invalid && (formData.get('password')?.dirty || formData.get('password')?.touched)">
                     <small *ngIf="formData.get('password')?.errors?.['required']">El campo 'password' es obligatorio</small>
-                    <small *ngIf="formData.get('password')?.errors?.['minlength']">El password debe tener mínimo 8 caracteres</small>
-                    <small *ngIf="formData.get('password')?.errors?.['maxlength']">El password debe tener máximo 20 caracteres</small>
                 </div>
             </div>
 

@@ -10,4 +10,5 @@ export interface ResponsePro {
     ok: boolean;
     msg?: string;
     data?: Product
+    token?: string;
 }

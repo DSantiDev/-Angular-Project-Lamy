@@ -11,15 +11,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './cards.component.css'
 })
 export class CardsComponent {
-  products: any;
+  products!: [];
   constructor(private productService: ProductService){
     
   }
-  ngOnInit():void{
-      this.productService.getAllProducts().subscribe((data) => {
-        console.log(data)
-        this.products = data.data
-      })
-  }
+  
 
 }

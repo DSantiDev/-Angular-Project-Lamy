@@ -12,8 +12,13 @@
       <li [ngClass]="{ 'active': selectedSection === 'metodosPago' }" (click)="selectSection('metodosPago')">
           Métodos de Pago
       </li>
-        <li ><a routerLinkActive="active" routerLink="/dashboard" routerLinkActive="activo">Admin</a></li>
+      @if (userData?.role === "admin") {
+        <li >
+          <a routerLinkActive="active" routerLink="/dashboard" routerLinkActive="activo">Admin</a>
+        </li>}
       </ul>
+      
+
     </aside>
     <div class="contenido-principal">
       <ng-container *ngIf="selectedSection === 'perfil'">
@@ -27,4 +32,5 @@
       </ng-container>
     </div>
   </div>
+  
 </main>

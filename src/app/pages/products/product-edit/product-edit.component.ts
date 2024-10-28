@@ -1,9 +1,10 @@
 import { CommonModule, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductService } from '../../../services/product.service';
-import { Router, RouterLink } from '@angular/router'; // Asegúrate de tener esto importado
+import { ActivatedRoute, Router, RouterLink } from '@angular/router'; // Asegúrate de tener esto importado
 import { Subscription } from 'rxjs';
+import { Product } from '../../../interfaces/product';
 
 @Component({
   selector: 'app-product-edit',
@@ -12,32 +13,59 @@ import { Subscription } from 'rxjs';
   templateUrl: './product-edit.component.html',
   styleUrl: './product-edit.component.css'
 })
-export class ProductEditComponent {
-  suscription!: Subscription;
-  productForm!: FormGroup;
+export class ProductEditComponent implements OnInit, OnDestroy {
+  subscription!: Subscription;
+  productEditForm!: FormGroup;
   showModal: boolean = false;
-  
-  constructor(private productService: ProductService, private router: Router) { // Inyección correcta del Router
-    this.productForm = new FormGroup({
-      name: new FormControl('', [ Validators.required ]),
+  productId!: string; 
+
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+    private route: ActivatedRoute 
+  ) {
+    this.productEditForm = new FormGroup({
+      name: new FormControl('', [Validators.required]),
       description: new FormControl(''),
-      price: new FormControl(0, [ Validators.required, Validators.min(0) ]),
-      quantity: new FormControl(1, [ Validators.required, Validators.min(1) ]),
-      category: new FormControl('non-category', [ Validators.required ]),
+      price: new FormControl(0, [Validators.required, Validators.min(0)]),
+      quantity: new FormControl(1, [Validators.required, Validators.min(1)]),
+      category: new FormControl('non-category', [Validators.required]),
       urlImage: new FormControl('')
     });
   }
 
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+        this.productId = params['id'];
+        this.loadProduct(this.productId); 
+    });
+}
+
+loadProduct(productId: string): void {
+  this.subscription = this.productService.getProduct(productId).subscribe(
+      (response) => {
+          if (response.ok && response.data) {  
+              this.productEditForm.patchValue(response.data);
+          } else {
+              console.error('Producto no encontrado o error en la respuesta');
+          }
+      },
+      error => {
+          console.error('Error al obtener el producto:', error);
+      }
+  );
+}
+
   onSubmit() {
-    if (this.productForm.valid) {
-      const formData = this.productForm.value;
-      this.suscription = this.productService.registerProduct(formData).subscribe(
+    if (this.productEditForm.valid) {
+      const formData = this.productEditForm.value;
+      this.subscription = this.productService.editProduct(this.productId, formData).subscribe(
         response => {
-          console.log('Producto registrado exitosamente'); 
-          this.showModal = true; 
+          console.log('Producto editado exitosamente');
+          this.showModal = true;
         },
         error => {
-          console.error('Error al registrar el producto:', error); 
+          console.error('Error al editar el producto:', error);
         }
       );
     } else {
@@ -48,13 +76,16 @@ export class ProductEditComponent {
   closeModal() {
     this.showModal = false;
   }
+
   handleAccept() {
-    this.closeModal();         
-    this.productForm.reset();
+    this.closeModal();
+    this.productEditForm.reset();
+    this.router.navigate(['/dashboard']); 
   }
-  ngOnDestroy(){
-    if (this.suscription) {
-      this.suscription.unsubscribe()
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
-   }
+  }
 }

@@ -47,7 +47,6 @@ export class AuthService {
       tap( ( data: Response)   => {
         if( data.token ) {
           if( data.data ) {
-            console.log('Datos del usuario a guardar:', data.data); 
             this._authUserData = data.data;  
             localStorage.setItem( 'authUserData', JSON.stringify(data.data)); 
           }

@@ -1,10 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Router } from '@angular/router'; 
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
+import { User } from '../../../interfaces/user';
+import { UserService } from '../../../services/user.service';
+import { Response } from '../../../interfaces/response';
+import { Subscription } from 'rxjs';
 
 
 
@@ -15,16 +19,26 @@ import { CommonModule } from '@angular/common';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   formData!: FormGroup;
-  showPassword: boolean = false; 
-  showActualPassword: boolean = false; 
-  showConfirmPassword: boolean = false;  
-  passwordMismatch: boolean = false;  
-  emailAlreadyRegistered: boolean = false;
-  showModal: boolean = false; 
+  subscription!: Subscription;
+  showPassword = false; 
+  showActualPassword = false; 
+  showConfirmPassword = false;  
+  passwordMismatch = false;  
+  emailAlreadyRegistered = false;
+  showModal = false; 
+  userData!: User;
+  userId  !: string; 
   
-  constructor(private authService: AuthService, private router: Router) {
+
+
+  constructor(
+    private authService: AuthService, 
+    private router: Router,
+    private userService: UserService ,
+    
+  ) {
     this.formData = new FormGroup({
       name: new FormControl('', [Validators.required]),
       lastname: new FormControl('', [Validators.required]),
@@ -37,8 +51,37 @@ export class ProfileComponent {
     });
   }
 
+  ngOnInit(): void {
+    this.loadUserData();
+}
+
+  
+loadUserData(): void {
+  const userData = localStorage.getItem('authUserData');
+  if (userData) {
+    const user = JSON.parse(userData);
+    const userId = user._id; 
+    this.userService.getUserById(userId).subscribe({
+      next: (response: Response) => {
+        if (response.data) {  
+          this.formData.patchValue(response.data); 
+        } else {
+          console.error('No se encontraron datos del usuario en la respuesta');
+        }
+      },
+      error: (error) => {
+        console.error('Error al cargar los datos del usuario:', error);
+      }
+    });
+  } else {
+    console.error('No se encontró authUserData en localStorage');
+  }
+}
+
+
+
   validatePasswords() {
-    const registerPassword = this.formData.get('password')?.value;
+    const registerPassword = this.formData.get('password')  ?.value;
     const confirmPassword = this.formData.get('confirmPassword')?.value;
     this.passwordMismatch = registerPassword !== confirmPassword;
   }
@@ -58,7 +101,7 @@ export class ProfileComponent {
   handleSubmit() {
     this.validatePasswords();
     if (this.formData.valid && !this.passwordMismatch) {
-        this.authService.registerUser(this.formData.value).subscribe({
+        this.authService.editUser(this.formData.value).subscribe({
             next: (data) => {
                 this.showModal = true;  
                 this.emailAlreadyRegistered = false; 
@@ -69,7 +112,7 @@ export class ProfileComponent {
                     this.emailAlreadyRegistered = true; 
                     this.formData.get('username')?.setErrors({ emailTaken: true }); 
                 } else {
-                    console.error('Error al registrar:', err); 
+                    console.error('Error al editar:', err); 
                 }
             }
         });

@@ -23,7 +23,7 @@ export const routes: Routes = [
     { path: '404', component: PageNotFoundComponent},
     { path: 'user/edit', component: UserEditComponent, canActivate: [authGuard]}, 
     { path: 'products/form', component: ProductFormComponent, canActivate: [authGuard]}, 
-    { path: 'product/edit', component: ProductEditComponent, canActivate: [authGuard]},
+    { path: 'product/edit/:id', component: ProductEditComponent, canActivate: [authGuard] },
     { path: 'computers/category', component: ProductListComponent},
     { path: 'computers/category/product', component: ProductDetailComponent},
     { path: '', redirectTo: 'home', pathMatch: 'full'},

@@ -10,5 +10,5 @@ export interface Product {
     createdAt?: string,
     updatedAt?: string,
     __v?: number,
-    _id?: string
+    _id: string
 }

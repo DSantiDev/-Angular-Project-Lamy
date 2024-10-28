@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 import { RouterLink } from '@angular/router';
+import { ProductService } from '../../../services/product.service';
+import { Product } from '../../../interfaces/product';
+import { ResponsePro } from '../../../interfaces/response';
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-}
 
 @Component({
   selector: 'app-create-product',
@@ -18,14 +16,32 @@ interface Product {
 export class CreateProductComponent implements OnInit {
   products: Product[] = [];
 
-  constructor() {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-
-    this.products = [
-      { id: 1, name: 'Producto 1', price: 100 },
-      { id: 2, name: 'Producto 2', price: 200 },
-      { id: 3, name: 'Producto 3', price: 300 },
-    ];
+    this.loadProducts(); 
   }
+
+  loadProducts(): void {
+    this.productService.getAllProducts().subscribe({
+        next: (data) => {
+            this.products = data;   
+        },
+        error: (err) => {
+            console.error('Error al obtener los productos:', err);
+        }
+    });
+}
+
+deleteProduct(productId: string): void {
+  this.productService.deleteProduct(productId).subscribe(
+    (response: ResponsePro) => {
+      console.log('Producto eliminado:', response);
+      this.loadProducts(); 
+    },
+    (error) => {
+      console.error('Error al eliminar el producto:', error);
+    }
+  );
+}
 }
