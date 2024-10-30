@@ -1,8 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Observer, tap, of, map, catchError } from 'rxjs';
-import { Product } from '../interfaces/product';
-import { ResponsePro } from '../interfaces/response';
+import { Observable, of, map, catchError } from 'rxjs';
+import { Response } from '../interfaces/response';
 import { User } from '../interfaces/user';
 
 
@@ -41,8 +40,9 @@ export class UserService {
         const headers = new HttpHeaders({
             'X-Token': token ? token : '',
         });
-    return this.http.get<Response>(`http://localhost:3000/api/users/${userId}`, { headers });
+        return this.http.get<Response>(`http://localhost:3000/api/users/${userId}`, { headers });
     }
+    
     
     getUserById(userId: string): Observable<Response> {
         const token = localStorage.getItem('token');
@@ -60,12 +60,14 @@ export class UserService {
         return this.http.patch<Response>(`http://localhost:3000/api/users/${userId}`, userData, { headers });
     }
     
-    deleteUser(userId: string): Observable<ResponsePro> {
+    
+    deleteUser(userId: string): Observable<Response> {
         const token = localStorage.getItem('token');
         const headers = new HttpHeaders({
             'X-Token': token ? token : '',
         });
-        return this.http.delete<ResponsePro>(`http://localhost:3000/api/users/${userId}`, { headers }); 
-      }
+        return this.http.delete<Response>(`http://localhost:3000/api/users/${userId}`, { headers });
+    }
+    
     
 }   

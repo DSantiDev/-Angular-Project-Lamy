@@ -21,7 +21,7 @@ export const routes: Routes = [
     { path: 'perfil', component: UserProfileComponent, canActivate: [authGuard]},
     { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard]},
     { path: '404', component: PageNotFoundComponent},
-    { path: 'user/edit', component: UserEditComponent, canActivate: [authGuard]}, 
+    { path: 'user/edit/:id', component: UserEditComponent, canActivate: [authGuard]}, 
     { path: 'products/form', component: ProductFormComponent, canActivate: [authGuard]}, 
     { path: 'product/edit/:id', component: ProductEditComponent, canActivate: [authGuard] },
     { path: 'computers/category', component: ProductListComponent},

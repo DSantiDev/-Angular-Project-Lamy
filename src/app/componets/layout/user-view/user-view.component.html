@@ -5,21 +5,28 @@
         <table>
         <thead>
             <tr>
-            <th>ID</th>
+            <th>ID</th> 
             <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
             <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let user of users">
-            <td>{{ user.id }}</td>
+            <td>{{ user._id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.lastname }}</td>
             <td>{{ user.username }}</td>
             <td>
                 <div class="btn-user">
-                    <a  routerLink='/user/edit' routerLinkActive="router-link-active" class="btn-detalle" >Editar</a>
-                    <a  routerLink='#' routerLinkActive="router-link-active" class="btn-detalle" >Eliminar</a>
+                    <a [routerLink]="['/user/edit', user._id]" class="btn-detalle">Editar</a>   
+                    <button (click)="deleteUsers(user._id)" class="btn-detalle">Eliminar</button>
                 </div>
             </td>
+            </tr>
+            <tr *ngIf="users.length === 0">
+                <td colspan="4">No hay usuarios disponibles.</td>
             </tr>
         </tbody>
         </table>
