@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-img-container">
-        <img src="/assets/images/portatil-a.png" alt="portatil-1" class="card-img">
+        <img [src]="productValue.urlImage" [alt]="productValue.name" class="card-img">
         <div class="card-icons">
             <a routerLink="/computers/category/product">
             <i class="fas fa-search"></i>
@@ -11,10 +11,10 @@
         </div>
     </div>
     <div class="card-body">
-        <h3 class="card-title">Producto 1</h3>
-        <p class="card-text">Descripcion producto.</p>
+        <h3 class="card-title">{{ productValue.name }}</h3>
+        <p class="card-text">{{ productValue.description }}</p>
         <div class="prices">
-            <p class="card-price">$1'000.000</p>
+            <p class="card-price">{{ productValue.price | currency }}</p>
         </div>
         <div class="btn-buy">
             <a routerLink="/computers/category/product" class="card-button">Comprar</a>

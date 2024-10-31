@@ -1,4 +1,5 @@
 <main class="main">
+    
     <nav class="breadcrumb">
       <ul>
           <li><a routerLink="/home">Inicio</a></li>
@@ -10,7 +11,9 @@
     <div class="texto-p">
       <h2>Portatiles</h2>
     </div>
-  
+ 
+    <!-- <pre class="code">{{ products | json }}</pre> -->
+    
     <div class="filters">
         <div class="filter-container">
             <input type="checkbox" id="filter-toggle" class="filter-toggle">
@@ -89,16 +92,11 @@
     </div>
     <div class="card-container">
       <div class="cards">
-        <app-cards></app-cards>
-      </div>
-      <div class="cards">
-        <app-cards></app-cards>
-      </div>
-      <div class="cards">
-        <app-cards></app-cards>
-      </div>
-      <div class="cards">
-        <app-cards></app-cards>
+        
+         @for (product of products; track $index) {
+          <app-cards [productValue]="product" ></app-cards>
+         }
+        
       </div>
     </div>
   </main>

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
 import { CommonModule } from '@angular/common';
+import { Product } from '../../../interfaces/product';
 
 @Component({
   selector: 'app-cards',
@@ -11,7 +12,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './cards.component.css'
 })
 export class CardsComponent {
-  products!: [];
+  @Input() productValue!: Product;
+
   constructor(private productService: ProductService){
     
   }

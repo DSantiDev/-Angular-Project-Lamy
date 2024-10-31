@@ -9,6 +9,5 @@ export interface Response {
 export interface ResponsePro {
     ok: boolean;
     msg?: string;
-    data?: Product
-    token?: string;
+    data?: Product;
 }

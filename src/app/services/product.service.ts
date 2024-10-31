@@ -30,8 +30,8 @@ export class ProductService {
         );
     }
 
-    getAllProducts(): Observable<Product[]> {
-        return this.http.get<{ ok: boolean, data: Product[] }>('http://localhost:3000/api/products')
+    getAllProducts(): Observable<Product[] | undefined | any > {
+        return this.http.get<ResponsePro>('http://localhost:3000/api/products')
             .pipe(
                 map(response => {
                     if (response.ok) {
@@ -51,10 +51,7 @@ export class ProductService {
     getProduct(productId: string): Observable<ResponsePro> {
     return this.http.get<ResponsePro>(`http://localhost:3000/api/products/${productId}`);
     }
-    
-    getProductById(productId: string): Observable<ResponsePro> {
-        return this.http.get<ResponsePro>(`http://localhost:3000/api/products/${productId}`);
-    }
+
 
     editProduct(productId: string, productData: Product): Observable<any> { 
         const token = localStorage.getItem('token');

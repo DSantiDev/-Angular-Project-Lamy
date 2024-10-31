@@ -26,12 +26,12 @@ export class UserEditComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute
   ) {
     this.userEditForm = new FormGroup({
-      name: new FormControl(''),
-      lastname: new FormControl(''),
+      name: new FormControl('', [Validators.required]),
+      lastname: new FormControl('', [Validators.required]),
       username: new FormControl({ value: '', disabled: true }),
-      phone: new FormControl('',  Validators.minLength(10)),
-      address: new FormControl('', ),
-      rol: new FormControl('', )
+      phone: new FormControl('', [Validators.required, Validators.minLength(10)]),
+      address: new FormControl('', [Validators.required]),
+      rol: new FormControl('', [Validators.required])
     });
   }
 
@@ -45,8 +45,15 @@ export class UserEditComponent implements OnInit, OnDestroy {
   loadUser(userId: string): void {
     this.subscription = this.userService.getUserById(userId).subscribe(
       (response) => {
-        if (response.ok && response.data) {  
-          this.userEditForm.patchValue(response.data);
+        if (response.ok && response.data) {
+          this.userEditForm.patchValue({
+            name: response.data.name,
+            lastname: response.data.lastname,
+            username: response.data.username, 
+            phone: response.data.phone,
+            address: response.data.address,
+            rol: response.data.role 
+          });
         } else {
           console.error('Usuario no encontrado o error en la respuesta');
         }
@@ -55,7 +62,8 @@ export class UserEditComponent implements OnInit, OnDestroy {
         console.error('Error al obtener el usuario:', error);
       }
     );
-  }
+}
+
 
   onSubmit() {
     if (this.userEditForm.valid) {
