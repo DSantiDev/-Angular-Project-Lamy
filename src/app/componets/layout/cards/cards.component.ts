@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../../interfaces/product';
+import { CartService } from '../../../services/cart.service';
 
 @Component({
   selector: 'app-cards',
@@ -14,9 +15,11 @@ import { Product } from '../../../interfaces/product';
 export class CardsComponent {
   @Input() productValue!: Product;
 
-  constructor(private productService: ProductService){
+  constructor(private productService: ProductService,private cartService: CartService){
     
   }
-  
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
+  }
 
 }

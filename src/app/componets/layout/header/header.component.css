@@ -125,116 +125,17 @@ li.menu-item {
 .container-search:hover i{
 	transform: rotate(-360deg);
 }
-.btn-success {
-    fill: currentColor;
-    width: 6rem; 
-    height: 4rem; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    border-radius: 1rem; 
-    position: relative; 
-    padding: 0; 
-    border: none; 
-    background: white;
-}
-.btn-success img {
-    width: 2.4rem; 
-    height: 2.4rem; 
-}
-.btn:hover{
-	background:linear-gradient(#CD1023, #ca4250d5);
-    transition: 1s;   
-}
-   
-    /**Estilo carrito de compras*/
-.btn-cart1{
-    display: none;
-}
-.btn-cart {
-    margin-left: 2rem;
-    cursor: pointer;
-}
-.cart-icon {
-    color: black;
-}
-.bi-cart-fill {
-    fill: currentColor; 
-    transition: fill 1s ease; 
-}
 
-.btn:hover .bi-cart-fill {
-    fill: white; 
-}
-.cart-number    {
-    position: absolute;
-    top: -1rem; 
-    right: -1rem; 
-    background-color: white;
-    color: black; 
-    border-radius: 50%;
-    width: 2rem; 
-    height: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem; 
-    font-weight: bold;
-    z-index: 10; 
-}
-   /** Cesta*/
-   .cart-toggle1{
+.cart1{
     display: none;
+}
+@media (max-width: 768px) {
+    .cart1{
+        display: block;
     }
-   .cart-toggle{
-    display: none;
-    }
-    .cart-panel {
-        position: fixed;
-        top: 0;
-        right: -100%; 
-        width: 30rem;
-        height: 100%;
-        background-color: white;
-        box-shadow: -.2rem 0 .5rem rgba(0, 0, 0, 0.5);
-        transition: right 0.3s ease;
-        padding: 2rem;
-        z-index: 1000;
-    }
-    #cart-toggle1:checked ~ .cart-panel {
-        right: 0;
-    }
-    #cart-toggle1:checked ~ .background{
-        display: flex;
-    }
-    #cart-toggle:checked ~ .cart-panel {
-        right: 0;
-    }
-    #cart-toggle:checked ~ .background{
-        display: flex;
-    }
-    .cart-panel h2 {
-        margin-top: 0;
-    }
-    .close-panel {
-        display: inline-block;
-        margin-top: 2rem;
-        color: #28a745;
-        cursor: pointer;
-        font-weight: bold;
-    }
-    .active {
-        border-radius: 1rem;
-        padding: .5rem;
-        background: #CD1023;
-        color: white;
-    }
-    .btnh-close{
+    .cart2{
         display: none;
     }
-    
-@media (max-width: 768px) {
     /**Containers*/
     .container-nav-cartlog{
         display: none;
@@ -267,16 +168,7 @@ li.menu-item {
     .container-log {
         top: 31rem;
     }   
-    /**Boton cart*/
-    .cart-btn {
-        display: flex;
-    }
-    .btn-cart{
-        display: none;
-    }
-    .btn-cart1{
-        display: block;
-    }   
+    
      /**Funcion Boton Hamburguesa*/
      .btnh-toggle:checked ~ .container-nav-cartlog {
         display: flex;

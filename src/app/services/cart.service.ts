@@ -6,53 +6,49 @@ import { Item } from '../interfaces/cart';
   providedIn: 'root'
 })
 export class CartService {
-  item!: Item;
-  private cartProducts: any = [] ;
+  private cartProducts: Item[] = [];
   private localStorageKey = 'cart';
 
   constructor() {
     this.loadCartFromLocalStorage();
-    console.log( this.cartProducts );
   }
 
   addToCart(product: Product) {
-    // Buscar el producto en el carrito usando su id
-    const productFound = this.cartProducts.find((productItem: any) => 
-      productItem.info._id === product._id
-    );
-  
+    const productFound = this.cartProducts.find((item: Item) => item.info?._id === product._id);
+
     if (!productFound) {
-      // Si no se encuentra en el carrito, se crea un nuevo item con order = 1
-      this.item = {
+      const item: Item = {
         info: product,
         order: 1,
-        total: product.price // Total inicial basado en la cantidad de 1
+        total: product.price
       };
-      this.cartProducts.push(this.item);
-    } else if ( productFound.order < product.stock ) {
-      // Si el producto ya está en el carrito y no se ha alcanzado el límite, incrementar 'order'
+      this.cartProducts.push(item);
+    } else if (productFound.order < product.stock) {
       productFound.order += 1;
       productFound.total = productFound.order * product.price;
     } else {
       console.error('Cantidad excedida');
+      alert('No puedes agregar más de ' + product.stock + ' unidades de este producto.');
     }
-  
-    // Guardar el carrito actualizado en localStorage
+
     this.saveCartToLocalStorage();
   }
-  
+
+  removeFromCart(product: Product) {
+    this.cartProducts = this.cartProducts.filter(item => item.info?._id !== product._id);
+    this.saveCartToLocalStorage();
+  }
+
+  getCartProducts(): Item[] {
+    return this.cartProducts;
+  }
 
   private saveCartToLocalStorage() {
-    localStorage.setItem( this.localStorageKey, JSON.stringify( this.cartProducts ) );
+    localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartProducts));
   }
 
   private loadCartFromLocalStorage() {
-
-    if( localStorage.getItem( this.localStorageKey ) ) {
-      this.cartProducts = JSON.parse( localStorage.getItem( this.localStorageKey ) ! )
-    }
-    else {
-      this.cartProducts = []
-    }
+    const storedCart = localStorage.getItem(this.localStorageKey);
+    this.cartProducts = storedCart ? JSON.parse(storedCart) : [];
   }
 }

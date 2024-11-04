@@ -37,5 +37,6 @@ export class ProductListComponent {
   toggleOrder(): void {
     this.orderToggle = !this.orderToggle;
   }
+  
 }
 

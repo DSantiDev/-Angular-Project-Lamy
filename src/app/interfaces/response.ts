@@ -25,8 +25,3 @@ export interface ResponseSub {
     msg?: string;
     data?: Subcategory;
 }
-export interface ResponseCart {
-    ok: boolean;
-    msg?: string;
-    data?: Item;
-}

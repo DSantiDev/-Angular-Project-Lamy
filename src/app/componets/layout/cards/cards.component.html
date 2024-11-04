@@ -17,7 +17,7 @@
             <p class="card-price">{{ productValue.price | currency }}</p>
         </div>
         <div class="btn-buy">
-            <a routerLink="/computers/category/product" class="card-button">Comprar</a>
-        </div>                       
+            <button (click)="addToCart(productValue)" class="card-button">Comprar</button>
+        </div>                        
     </div>
 </div>
