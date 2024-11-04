@@ -3,9 +3,10 @@
         <h2>Computadores</h2>
     </div>
     <div class="card-container">
-        <app-cards-category></app-cards-category>
-        <app-cards-category></app-cards-category>
-        <app-cards-category></app-cards-category>
-        <app-cards-category></app-cards-category>
+        
+        @for (category of categories; track $index) {
+            <app-cards-category [categoryValue]="category" ></app-cards-category>
+        }
     </div>
+    
 </main>

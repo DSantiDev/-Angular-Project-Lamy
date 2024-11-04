@@ -180,8 +180,9 @@
 }
 .product-tabs {
     margin: 4rem ;
-    height: 60rem;
+
 }
+
 /**Botones descripcion*/
 .tab {
     padding: 1rem 2rem;
@@ -192,6 +193,7 @@
     border-radius: 1rem;
     color: white;
     text-decoration: none;
+    margin-left: 1rem;
 }
 .tab:hover{
     background-color: #29166F;
@@ -218,24 +220,12 @@
     display: none;
 }
 .tab-panel-des{
-    display: none;
-    position: absolute;
     z-index: 1000;
     margin-top: 5rem;
 }  
 
 
 
-
-.description-toggle:checked ~  .product-tabs + .tab-panel-des {
-    display:block;
-}
-.especificaciones-toggle:checked ~ .product-tabs + .tab-panel-esp{
-    display: block;
-}
-.valoracion-toggle:checked ~ .product-tabs + .tab-panel-val{
-    display: block;
-}
 
 .buttons-products {
     display: flex;
@@ -244,8 +234,7 @@
 }
 /**Valoraciones*/
 .tab-panel-val{
-    display: none;
-    position: absolute;
+    /* display: none; */
     z-index: 1000;
     margin-top: 5rem;
     left: 4rem;
@@ -403,14 +392,12 @@ button, select {
 
 /* Estilos para el contenido de la pestaña */
 .tab-panel-esp {
-    display: none;
     padding: 2rem;
     background-color: #fff;
     border: 1px solid #ddd;
     border-top: none;
     border-radius: 0 0 5px 5px;
     margin-top: 4rem;
-    position: absolute;
     z-index: 1000;
     left: 4rem;
 }

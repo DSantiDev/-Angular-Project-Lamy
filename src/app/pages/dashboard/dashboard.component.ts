@@ -4,11 +4,13 @@ import { ProductFormComponent } from '../products/product-form/product-form.comp
 import { RouterLink } from '@angular/router';
 import { CreateProductComponent } from '../../componets/layout/create-product/create-product.component';
 import { UserViewComponent } from "../../componets/layout/user-view/user-view.component";
+import { CategoriesComponent } from '../../componets/layout/categories/categories.component';
+import { SubcategoriesComponent } from '../../componets/layout/subcategories/subcategories.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, ProductFormComponent, RouterLink, CreateProductComponent, UserViewComponent],
+  imports: [CommonModule, ProductFormComponent, RouterLink, CreateProductComponent, UserViewComponent, CategoriesComponent, SubcategoriesComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

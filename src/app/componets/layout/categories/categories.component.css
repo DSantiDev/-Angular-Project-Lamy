@@ -1,0 +1,42 @@
+.category-selector {
+    margin: 2rem;
+}
+
+.category-selector table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.category-selector th, .category-selector td {
+    border: .1rem solid #ccc;
+    padding: 1rem;
+    text-align: left;
+}
+
+.category-selector button {
+    margin-right: 1rem;
+}
+
+.btn-detalle {
+    background-color: #29166F;
+    color: #fff;
+    border: none;
+    padding: .8rem 1.2rem;
+    border-radius: 3rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-detalle:hover {
+    background-color: #0056b3;
+}
+
+.container-selector {
+    margin-top: 3rem;
+}
+
+.btn-category {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}

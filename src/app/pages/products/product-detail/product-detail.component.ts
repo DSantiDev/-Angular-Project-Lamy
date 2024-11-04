@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CardsComponent } from '../../../componets/layout/cards/cards.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; 
+import { ProductService } from '../../../services/product.service';
+import { Product } from '../../../interfaces/product';
+import { ResponsePro } from '../../../interfaces/response';
 
 @Component({
   selector: 'app-product-detail',
@@ -11,7 +14,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css']
 })
-export class ProductDetailComponent {
+export class ProductDetailComponent implements OnInit{
   mainImage: string = '/assets/images/portatil-a.png'; // Imagen principal
   quantity: number = 1; // Cantidad inicial
   userRating: number = 0; // Valoración del usuario
@@ -20,12 +23,27 @@ export class ProductDetailComponent {
   ratings: { rating: number, review: string }[] = []; // Arreglo para almacenar reseñas
   stars: number[] = Array(5).fill(0); // Para mostrar estrellas llenas
   starsEmpty: number[] = Array(5).fill(0); // Para mostrar estrellas vacías
+  product!: Product;
+  products: Product[] = [];
+
+  mostrarValidacion: boolean = false;
+  mostrarDescription: boolean = false;
+  mostrarEspecificaciones: boolean = false;
+
+
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService 
+  ) {
+    console.log( this.mostrarValidacion );
+  }
 
   changeImage(event: Event) {
     const target = event.target as HTMLImageElement;
-    this.mainImage = target.src; // Cambia la imagen principal a la de la miniatura seleccionada
+    this.mainImage = target.src; 
   }
 
+  
   increaseQuantity() {
     this.quantity++;
   }
@@ -33,6 +51,26 @@ export class ProductDetailComponent {
   decreaseQuantity() {
     if (this.quantity > 1) {
       this.quantity--;
+    }
+  }
+
+  setActiveTab(tab: string) {
+    // Desactivar todas las pestañas
+    this.mostrarDescription = false;
+    this.mostrarValidacion = false;
+    this.mostrarEspecificaciones = false;
+
+    // Activar la pestaña correspondiente
+    switch (tab) {
+      case 'description':
+        this.mostrarDescription = true;
+        break;
+      case 'validation':
+        this.mostrarValidacion = true;
+        break;
+      case 'specifications':
+        this.mostrarEspecificaciones = true;
+        break;
     }
   }
 
@@ -65,9 +103,26 @@ export class ProductDetailComponent {
     return (count / this.ratings.length) * 100 || 0; // Evitar división por cero
   }
 
-  ngOnInit() {
-    // Inicializar los arrays de estrellas
-    this.stars = Array(Math.floor(this.averageRating)).fill(1);
-    this.starsEmpty = Array(5 - Math.floor(this.averageRating)).fill(0);
+  
+ngOnInit() {
+  const productId = this.route.snapshot.paramMap.get('id'); // Obtener el ID del producto de la ruta
+  if (productId) {
+    this.productService.getProduct(productId).subscribe((response: ResponsePro) => {
+      if (response.ok && response.data) { // Verificar que la respuesta sea exitosa y que haya datos
+        this.product = response.data; // Asignar el objeto del producto
+      } else {
+        console.error('Error fetching product:', response.msg);
+        // Manejar el error adecuadamente aquí
+      }
+    }, error => {
+      console.error('Error fetching product:', error);
+      // Manejar el error adecuadamente aquí
+    });
   }
+  this.productService.getAllProducts().subscribe( data => {
+    this.products = data;
+    console.log( this.products );
+  });
+}
+  
 }

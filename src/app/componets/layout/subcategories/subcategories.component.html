@@ -1,0 +1,32 @@
+<div class="subcategory-selector">
+    <a routerLink='/subcategory/form' class="btn-detalle">Crear</a>
+    <div class="container-selector">
+        <h2>Seleccionar Subcategoría</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Categoria</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let subcategory of subcategories">
+                    <td>{{ subcategory.category.name }}</td>
+                    <td>{{ subcategory.name }}</td>
+                    <td>{{ subcategory.description }}</td>
+                    <td>
+                        <div class="btn-subcategory">
+                            <a [routerLink]="['/subcategory/edit', subcategory._id]" class="btn-detalle">Editar</a>
+                            <button (click)="deleteSubCategory(subcategory._id)" class="btn-detalle">Eliminar</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr *ngIf="subcategories.length === 0">
+                    <td colspan="3">No hay subcategorías disponibles.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

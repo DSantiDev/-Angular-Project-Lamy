@@ -14,7 +14,13 @@
           </li>
           <li [ngClass]="{ 'active': selectedSection === 'usuarios' }" (click)="selectSection('usuarios')">
             Usuarios
-          </li>       
+          </li>  
+          <li [ngClass]="{ 'active': selectedSection === 'categorias' }" (click)="selectSection('categorias')">
+            Categorias
+          </li>      
+          <li [ngClass]="{ 'active': selectedSection === 'subcategorias' }" (click)="selectSection('subcategorias')">
+            Subcategorias
+          </li> 
         </ul>
       </aside>
       <div class="contenido-principal">
@@ -23,6 +29,12 @@
         </ng-container>
         <ng-container *ngIf="selectedSection === 'usuarios'">
           <app-user-view />
+        </ng-container>
+        <ng-container *ngIf="selectedSection === 'categorias'">
+          <app-categories />
+        </ng-container>
+        <ng-container *ngIf="selectedSection === 'subcategorias'">
+          <app-subcategories />
         </ng-container>
       </div>
     </div>

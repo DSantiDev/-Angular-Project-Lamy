@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Category } from '../../../interfaces/category';
+import { CategoryService } from '../../../services/category.service';
+import { Subcategory } from '../../../interfaces/subcategory';
+import { SubCategoryService } from '../../../services/sub-category.service';
 
 @Component({
   selector: 'app-cards-category',
@@ -9,5 +13,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './cards-category.component.css'
 })
 export class CardsCategoryComponent {
+  @Input() categoryValue!: Subcategory;
+
 
 }

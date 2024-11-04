@@ -12,6 +12,12 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { ProductEditComponent } from './pages/products/product-edit/product-edit.component';
 import { UserEditComponent } from './componets/layout/user-edit/user-edit.component';
 import { authGuard } from './guards/auth.guard';
+import { CreateCategoryComponent } from './componets/layout/created-category/created-category.component';
+import { EditCategoryComponent } from './componets/layout/edit-category/edit-category.component';
+import { CreatedSubcategoryComponent } from './componets/layout/created-subcategory/created-subcategory.component';
+import { EditSubcategoryComponent } from './componets/layout/edit-subcategory/edit-subcategory.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
+
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent},
@@ -20,12 +26,17 @@ export const routes: Routes = [
     { path: 'computers', component: ComputersComponent},
     { path: 'perfil', component: UserProfileComponent, canActivate: [authGuard]},
     { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard]},
-    { path: '404', component: PageNotFoundComponent},
+    { path: 'checkout', component: CheckoutComponent},
+    { path: '404', component: PageNotFoundComponent}, 
     { path: 'user/edit/:id', component: UserEditComponent, canActivate: [authGuard]}, 
     { path: 'products/form', component: ProductFormComponent, canActivate: [authGuard]}, 
+    { path: 'subcategory/form', component: CreatedSubcategoryComponent , canActivate: [authGuard]},
+    { path: 'subcategory/edit/:id', component: EditSubcategoryComponent , canActivate: [authGuard]},
+    { path: 'category/form', component: CreateCategoryComponent, canActivate: [authGuard]},
+    { path: 'category/edit/:id', component: EditCategoryComponent, canActivate: [authGuard]},
     { path: 'product/edit/:id', component: ProductEditComponent, canActivate: [authGuard] },
     { path: 'computers/category', component: ProductListComponent},
-    { path: 'computers/category/product', component: ProductDetailComponent},
+    { path: 'computers/category/product/:id', component: ProductDetailComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full'},
     { path: '**', redirectTo: '404', pathMatch: 'full'}
 ];

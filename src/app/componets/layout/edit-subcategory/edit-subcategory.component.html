@@ -1,0 +1,54 @@
+<form [formGroup]="subcategoryForm" (ngSubmit)="onSubmit()">
+    <div class="register-container">
+        <a routerLink="/dashboard" routerLinkActive="activo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+            </svg>
+        </a>
+        <h1>Editar Subcategoría</h1>
+        <div class="field">
+            <label for="category">Categoría*</label>
+            <select formControlName="category" id="category" placeholder="Seleccione la categoría">
+                <option value="" disabled>Seleccione una categoría</option>
+                <option *ngFor="let category of categories" [value]="category._id">{{ category.name }}</option>
+            </select>
+            <div class="error">
+                <div *ngIf="subcategoryForm.get('category')?.invalid && (subcategoryForm.get('category')?.dirty || subcategoryForm.get('category')?.touched)">
+                    <small *ngIf="subcategoryForm.get('category')?.errors?.['required']">
+                        El valor del campo categoría es obligatorio
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label for="name-subcategory">Nombre de la subcategoría*</label> 
+            <input placeholder="Ingrese el nombre de la subcategoría" type="text" formControlName="name" id="name-subcategory" />
+            <div class="error">
+                <div *ngIf="subcategoryForm.get('name')?.invalid && (subcategoryForm.get('name')?.dirty || subcategoryForm.get('name')?.touched)">
+                    <small *ngIf="subcategoryForm.get('name')?.errors?.['required']">
+                        El valor del campo nombre es obligatorio
+                    </small>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label for="description">Descripción</label>
+            <textarea placeholder="Ingrese la descripción de la subcategoría" formControlName="description" id="description"></textarea>
+        </div>
+        <div class="field"> 
+            <label for="">Image Product</label>
+            <input formControlName="urlImage" type="text" id="image"/>
+        </div>
+        <div class="field">
+            <button class="btn-register-submit" type="submit" [disabled]="subcategoryForm.invalid">Guardar</button>
+        </div>
+    </div>
+</form>
+<div class="modal" [ngClass]="{'show': showModal}">
+    <div class="modal-content">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h2>¡Edición Exitosa!</h2>
+        <p>Subcategoría editada correctamente.</p>
+        <button class="modal-btn" (click)="handleAccept()">Aceptar</button> 
+    </div>
+</div>

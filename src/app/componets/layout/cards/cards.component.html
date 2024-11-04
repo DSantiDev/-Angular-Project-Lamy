@@ -2,8 +2,8 @@
     <div class="card-img-container">
         <img [src]="productValue.urlImage" [alt]="productValue.name" class="card-img">
         <div class="card-icons">
-            <a routerLink="/computers/category/product">
-            <i class="fas fa-search"></i>
+            <a [routerLink]="['/computers/category/product', productValue._id]">
+                <i class="fas fa-search"></i>
             </a>
             <a routerLink="/computers/category/product">
             <i class="fas fa-shopping-cart"></i>

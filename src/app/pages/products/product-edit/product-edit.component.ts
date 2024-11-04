@@ -4,7 +4,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ProductService } from '../../../services/product.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router'; // Asegúrate de tener esto importado
 import { Subscription } from 'rxjs';
-import { Product } from '../../../interfaces/product';
+import { Subcategory } from '../../../interfaces/subcategory';
+import { SubCategoryService } from '../../../services/sub-category.service';
 
 @Component({
   selector: 'app-product-edit',
@@ -18,11 +19,13 @@ export class ProductEditComponent implements OnInit, OnDestroy {
   productEditForm!: FormGroup;
   showModal: boolean = false;
   productId!: string; 
+  subCategoryService: Subcategory[] = [];
 
   constructor(
     private productService: ProductService,
     private router: Router,
-    private route: ActivatedRoute 
+    private route: ActivatedRoute,
+    private categoryService: SubCategoryService
   ) {
     this.productEditForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
@@ -35,11 +38,29 @@ export class ProductEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-        this.productId = params['id'];
-        this.loadProduct(this.productId); 
+    this.route.params.subscribe((params) => {
+      this.productId = params['id'];
+      this.loadProduct(this.productId);
+      this.loadSubcategories(); // Cargar categorías al inicializar
+    });
+  }
+
+  loadSubcategories(): void {
+    this.subscription = this.categoryService.getAllSubCategories().subscribe({
+      next: (response) => {
+        console.log('Respuesta de subcategorías:', response); 
+        if (response && response.length) {
+          this.categoryService = response; 
+        } else {
+          console.error('No se encontraron subcategorías');
+        }
+      },
+      error: (err) => {
+        console.error('Error al cargar subcategorías:', err);
+      }
     });
 }
+
 
 loadProduct(productId: string): void {
   this.subscription = this.productService.getProduct(productId).subscribe(

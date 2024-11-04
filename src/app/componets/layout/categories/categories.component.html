@@ -1,0 +1,30 @@
+<div class="category-selector">
+    <a routerLink='/category/form' class="btn-detalle">Crear</a>
+    <div class="container-selector">
+        <h2>Seleccionar Categoría</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let category of categories">
+                    <td>{{ category.name }}</td>
+                    <td>{{ category.description }}</td>
+                    <td>
+                        <div class="btn-category">
+                            <a [routerLink]="['/category/edit', category._id]" class="btn-detalle">Editar</a>
+                            <button (click)="deleteCategory(category._id)" class="btn-detalle">Eliminar</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr *ngIf="categories.length === 0">
+                    <td colspan="3">No hay categorías disponibles.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

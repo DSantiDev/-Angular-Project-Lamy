@@ -52,17 +52,14 @@
         </div>
         <div class="field">
             <label for="category">Category*</label>
-            <select formControlName="category" id="category" placeholder="Ingrese la categoria del producto">
-                <option value="tecnology">Tecnology</option>
-                <option value="vegetables">Vegetables</option>
-                <option value="fruits">Fruits</option>
-                <option value="home">Home</option>
-                <option value="pharmacy">Pharmacy</option>
+            <select formControlName="category" id="category" placeholder="Seleccione la categoría del producto">
+                <option value="" disabled selected>Seleccione una subcategoría</option>
+                <option *ngFor="let subcategory of subcategories" [value]="subcategory._id">{{ subcategory.name }}</option>
             </select>
             <div class="error">
-                <div *ngIf="productForm.get( 'category' )?.invalid && ( productForm.get( 'category' )?.dirty || productForm.get( 'category' )?.touched )">
-                    <small *ngIf="productForm.get( 'category' )?.errors?.[ 'required' ]">
-                        El  valor del campo categoria es obligatorio
+                <div *ngIf="productForm.get('category')?.invalid && (productForm.get('category')?.dirty || productForm.get('category')?.touched)">
+                    <small *ngIf="productForm.get('category')?.errors?.['required']">
+                        El valor del campo subcategoría es obligatorio
                     </small>
                 </div>
             </div>
