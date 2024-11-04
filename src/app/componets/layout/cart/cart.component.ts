@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../../services/cart.service';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { Item } from '../../../interfaces/cart';
 import { Product } from '../../../interfaces/product';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -12,17 +13,26 @@ import { Product } from '../../../interfaces/product';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
   cartProducts: Item[] = [];
-  isCartOpen: boolean = false; // Variable para controlar la visibilidad del carrito
+  isCartOpen: boolean = false;
+  private cartSubscription!: Subscription;
 
   constructor(private cartService: CartService, private router: Router) {}
 
   ngOnInit() {
     this.loadCartProducts();
+    this.cartSubscription = this.cartService.cartProducts$.subscribe(products => {
+      this.cartProducts = products;
+    });
   }
 
+
   
+  ngOnDestroy() {
+    this.cartSubscription.unsubscribe(); // Limpia la suscripción al destruir el componente
+  }
+
   loadCartProducts() {
     this.cartProducts = this.cartService.getCartProducts();
   }
@@ -34,26 +44,22 @@ export class CartComponent {
   removeFromCart(product: Product) {
     if (product) {
       this.cartService.removeFromCart(product);
-      this.loadCartProducts(); 
     }
   }
-
 
   toggleCart() {
     this.isCartOpen = !this.isCartOpen; 
   }
 
-
   finalizePurchase() {
     const productsToCheckout = this.cartProducts
-      .filter(item => item.info !== undefined)
+      .filter(item => item.info !== undefined)  
       .map(item => ({
-        name: item.info?.name,
-        image: item.info?.urlImage,
-        price: item.info?.price,
-        quantity: item.order
+        info: item.info!,  
+        order: item.order,
+        total: item.order * (item.info?.price || 0)
       }));
-
+    
     if (productsToCheckout.length > 0) {
       this.cartService.setCheckoutProducts(productsToCheckout);
       this.router.navigate(['/checkout']);
@@ -61,5 +67,4 @@ export class CartComponent {
       console.warn('No hay productos en el carrito para finalizar la compra.');
     }
   }
-  
 }

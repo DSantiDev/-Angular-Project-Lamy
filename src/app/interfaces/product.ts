@@ -2,7 +2,7 @@ export interface Product {
     name: string,
     description: string,
     price: number,
-    quantity: string,
+    quantity: number,
     category: string,
     urlImage: string,
     state: string,
@@ -11,5 +11,4 @@ export interface Product {
     updatedAt?: string,
     __v: number,
     _id: string,
-    stock: number;
 }

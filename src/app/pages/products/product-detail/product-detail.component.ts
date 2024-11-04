@@ -106,10 +106,9 @@ export class ProductDetailComponent implements OnInit{
   buyNow() {
     if (this.product) {
       const productsToCheckout = [{
-        name: this.product.name,
-        image: this.product.urlImage,
-        price: this.product.price,
-        quantity: this.quantity
+        info: this.product,  
+        order: this.quantity, 
+        total: this.quantity * this.product.price 
       }];
   
       this.cartService.setCheckoutProducts(productsToCheckout);
@@ -118,6 +117,7 @@ export class ProductDetailComponent implements OnInit{
       console.warn('No hay producto para comprar.');
     }
   }
+  
   
   
   ngOnInit() {
