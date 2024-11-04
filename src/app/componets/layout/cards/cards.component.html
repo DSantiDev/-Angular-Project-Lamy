@@ -5,8 +5,8 @@
             <a [routerLink]="['/computers/category/product', productValue._id]">
                 <i class="fas fa-search"></i>
             </a>
-            <a routerLink="/computers/category/product">
-            <i class="fas fa-shopping-cart"></i>
+            <a (click)="addToCart(productValue)" style="cursor: pointer;">
+                <i class="fas fa-shopping-cart"></i>
             </a>
         </div>
     </div>

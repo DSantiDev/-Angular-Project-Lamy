@@ -8,6 +8,7 @@ import { Item } from '../interfaces/cart';
 export class CartService {
   private cartProducts: Item[] = [];
   private localStorageKey = 'cart';
+  private checkoutProducts: any[] = [];
 
   constructor() {
     this.loadCartFromLocalStorage();
@@ -28,7 +29,6 @@ export class CartService {
       productFound.total = productFound.order * product.price;
     } else {
       console.error('Cantidad excedida');
-      alert('No puedes agregar más de ' + product.stock + ' unidades de este producto.');
     }
 
     this.saveCartToLocalStorage();
@@ -50,5 +50,12 @@ export class CartService {
   private loadCartFromLocalStorage() {
     const storedCart = localStorage.getItem(this.localStorageKey);
     this.cartProducts = storedCart ? JSON.parse(storedCart) : [];
+  }
+  setCheckoutProducts(products: any[]) {
+    this.checkoutProducts = products;
+  }
+
+  getCheckoutProducts() {
+    return this.checkoutProducts;
   }
 }

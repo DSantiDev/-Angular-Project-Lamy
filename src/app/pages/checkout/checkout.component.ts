@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { CartService } from '../../services/cart.service';
 
 interface Product {
   name: string;
@@ -22,20 +23,22 @@ export class CheckoutComponent implements OnInit {
   total: number = 0; // Total de la compra
   shippingForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private cartService: CartService) {
     // Inicializa el formulario
     this.shippingForm = this.fb.group({
-      name: [''],
-      address: [''],
-      city: [''], // Agrega el control de ciudad
-      phone: [''],
-      paymentMethod: ['credit'] // Método de pago predeterminado
+        name: [''],
+        address: [''],
+        city: [''],
+        phone: [''],
+        paymentMethod: ['credit']
     });
-  }
+}
 
-  ngOnInit(): void {
-    // Aquí deberías cargar los productos y el total
-  }
+ngOnInit(): void {
+  this.products = this.cartService.getCheckoutProducts() || [];
+  this.updateTotal();
+}
+
 
   increaseQuantity(product: any): void {
     product.quantity++;
@@ -54,7 +57,12 @@ export class CheckoutComponent implements OnInit {
   }
 
   completePurchase(): void {
-    // Lógica para completar la compra
   }
+  removeProduct(product: any): void {
+    this.cartService.removeFromCart(product);
+    this.products = this.products.filter(p => p.name !== product.name || p.image !== product.image);
+    this.updateTotal();
+  }
+  
 }
   

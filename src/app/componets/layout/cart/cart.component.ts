@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { CartService } from '../../../services/cart.service'; // Importar el servicio del carrito
+import { CartService } from '../../../services/cart.service';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Item } from '../../../interfaces/cart';
 import { Product } from '../../../interfaces/product';
 
@@ -10,21 +10,21 @@ import { Product } from '../../../interfaces/product';
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css'] // Corregido a 'styleUrls'
+  styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
-  cartProducts: Item[] = []; // Cambiar a tipo Item[]
-  totalItems: number = 0;
+  cartProducts: Item[] = [];
+  isCartOpen: boolean = false; // Variable para controlar la visibilidad del carrito
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private router: Router) {}
 
   ngOnInit() {
-    this.cartProducts = this.cartService.getCartProducts();
-    this.updateTotalItems();
+    this.loadCartProducts();
   }
 
-  updateTotalItems() {
-    this.totalItems = this.cartProducts.reduce((sum, item) => sum + item.order, 0);
+  
+  loadCartProducts() {
+    this.cartProducts = this.cartService.getCartProducts();
   }
 
   getTotal(): number {
@@ -34,13 +34,32 @@ export class CartComponent {
   removeFromCart(product: Product) {
     if (product) {
       this.cartService.removeFromCart(product);
-      this.cartProducts = this.cartService.getCartProducts(); 
+      this.loadCartProducts(); 
     }
   }
-  toggleCart() {
-    const checkbox = document.getElementById('cart-toggle') as HTMLInputElement;
-    checkbox.checked = !checkbox.checked; // Cambia el estado del checkbox
-}
 
+
+  toggleCart() {
+    this.isCartOpen = !this.isCartOpen; 
+  }
+
+
+  finalizePurchase() {
+    const productsToCheckout = this.cartProducts
+      .filter(item => item.info !== undefined)
+      .map(item => ({
+        name: item.info?.name,
+        image: item.info?.urlImage,
+        price: item.info?.price,
+        quantity: item.order
+      }));
+
+    if (productsToCheckout.length > 0) {
+      this.cartService.setCheckoutProducts(productsToCheckout);
+      this.router.navigate(['/checkout']);
+    } else {
+      console.warn('No hay productos en el carrito para finalizar la compra.');
+    }
+  }
   
 }
