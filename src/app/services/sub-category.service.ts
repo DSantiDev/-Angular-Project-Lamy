@@ -10,7 +10,7 @@ import { ResponseSub } from '../interfaces/response';
   providedIn: 'root'
 })
 export class SubCategoryService {
-  private baseUrl = 'http://localhost:3000/api/subcategories'; // URL base para la API de subcategorías
+  private baseUrl = 'http://3.84.39.132/api/subcategories'; // URL base para la API de subcategorías
 
   constructor(private http: HttpClient) {}
 

@@ -2,7 +2,7 @@ import { CommonModule, NgIf } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductService } from '../../../services/product.service';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router'; // Asegúrate de tener esto importado
+import { ActivatedRoute, Router, RouterLink } from '@angular/router'; 
 import { Subscription } from 'rxjs';
 import { Subcategory } from '../../../interfaces/subcategory';
 import { SubCategoryService } from '../../../services/sub-category.service';
@@ -41,7 +41,7 @@ export class ProductEditComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       this.productId = params['id'];
       this.loadProduct(this.productId);
-      this.loadSubcategories(); // Cargar categorías al inicializar
+      this.loadSubcategories(); 
     });
   }
 

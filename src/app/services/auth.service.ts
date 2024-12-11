@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   registerUser(newUser: User): Observable<boolean> {
-  return this.http.post<Response>('http://localhost:3000/api/auth/register', newUser)
+  return this.http.post<Response>('http://3.84.39.132/api/auth/register', newUser)
     .pipe(
       map((data) => {
         return data.ok
@@ -29,7 +29,7 @@ export class AuthService {
 }
 
  editUser(editUser: User): Observable< boolean | string > {
-  return this.http.post<Response>('http://localhost:3000/api/auth/edit', editUser)
+  return this.http.post<Response>('http://3.84.39.132/api/auth/edit', editUser)
     .pipe(
       map((data) => {
         return data.ok
@@ -41,7 +41,7 @@ export class AuthService {
 }
   
   login( credenciales: User ) : Observable< string|boolean|undefined > {
-    return this.http.post<Response>( 'http://localhost:3000/api/auth/login', 
+    return this.http.post<Response>( 'http://3.84.39.132/api/auth/login', 
       credenciales)
       .pipe( 
       tap( ( data: Response)   => {
@@ -68,7 +68,7 @@ export class AuthService {
   verifyAuthUser():Observable<boolean>{
     const token = localStorage.getItem('token')||'';
     const headers = new HttpHeaders().set('X-Token',token)
-    return this.http.get<Response>('http://localhost:3000/api/auth/re-new-token',{headers})
+    return this.http.get<Response>('http://3.84.39.132/api/auth/re-new-token',{headers})
     .pipe(
       tap((data) => {
         if (data.token) {

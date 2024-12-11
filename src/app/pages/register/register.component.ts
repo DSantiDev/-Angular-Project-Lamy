@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, CommonModule, RouterModule], 
+  imports: [ReactiveFormsModule, CommonModule, RouterModule], 
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })

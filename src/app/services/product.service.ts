@@ -18,7 +18,7 @@ export class ProductService {
         'X-Token': token ? token : '',
     });
 
-    return this.http.post<{ success: boolean, msg: string }>('http://localhost:3000/api/products', productData, { headers })
+    return this.http.post<{ success: boolean, msg: string }>('http://3.84.39.132/api/products', productData, { headers })
         .pipe(
             catchError(error => {
                 console.error('Error al registrar el producto:', error);
@@ -28,7 +28,7 @@ export class ProductService {
     }
 
     getAllProducts(): Observable<Product[] | undefined | any > {
-        return this.http.get<ResponsePro>('http://localhost:3000/api/products')
+        return this.http.get<ResponsePro>('http://3.84.39.132/api/products')
             .pipe(
                 map(response => {
                     if (response.ok) {
@@ -46,7 +46,7 @@ export class ProductService {
     }
 
     getProduct(productId: string): Observable<ResponsePro> {
-    return this.http.get<ResponsePro>(`http://localhost:3000/api/products/${productId}`);
+    return this.http.get<ResponsePro>(`http://3.84.39.132/api/products/${productId}`);
     }
 
 
@@ -55,13 +55,13 @@ export class ProductService {
         const headers = new HttpHeaders({
             'X-Token': token ? token : '',
         });
-        return this.http.patch(`http://localhost:3000/api/products/${productId}`, productData, { headers });
+        return this.http.patch(`http://3.84.39.132/api/products/${productId}`, productData, { headers });
     }
     deleteProduct(productId: string): Observable<ResponsePro> {
         const token = localStorage.getItem('token');
         const headers = new HttpHeaders({
             'X-Token': token ? token : '',
         });
-        return this.http.delete<ResponsePro>(`http://localhost:3000/api/products/${productId}`, { headers });
+        return this.http.delete<ResponsePro>(`http://3.84.39.132/api/products/${productId}`, { headers });
     }
 }

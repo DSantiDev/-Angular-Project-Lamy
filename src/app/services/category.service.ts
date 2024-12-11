@@ -11,7 +11,7 @@ import { ResponseCat } from '../interfaces/response';
   providedIn: 'root'
 })
 export class CategoryService {
-  private baseUrl = 'http://localhost:3000/api/categories';
+  private baseUrl = 'http://3.84.39.132/api/categories';
 
   constructor(private http: HttpClient) { }
 

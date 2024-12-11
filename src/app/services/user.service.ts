@@ -18,7 +18,7 @@ export class UserService {
         const headers = new HttpHeaders({
             'X-Token': token ? token : '',
         });
-        return this.http.get<{ ok: boolean, data: User[] }>('http://localhost:3000/api/users/', { headers })
+        return this.http.get<{ ok: boolean, data: User[] }>('http://3.84.39.132/api/users/', { headers })
             .pipe(
                 map(response => {
                     if (response.ok) {
@@ -40,7 +40,7 @@ export class UserService {
         const headers = new HttpHeaders({
             'X-Token': token ? token : '',
         });
-        return this.http.get<Response>(`http://localhost:3000/api/users/${userId}`, { headers });
+        return this.http.get<Response>(`http://3.84.39.132/api/users/${userId}`, { headers });
     }
     
     
@@ -49,7 +49,7 @@ export class UserService {
         const headers = new HttpHeaders({
             'X-Token': token ? token : '',
         });
-        return this.http.get<Response>(`http://localhost:3000/api/users/${userId}`, { headers });
+        return this.http.get<Response>(`http://3.84.39.132/api/users/${userId}`, { headers });
     }
 
     editUser(userId: string, userData: User): Observable<Response> { 
@@ -57,7 +57,7 @@ export class UserService {
         const headers = new HttpHeaders({
             'X-Token': token ? token : '',
         });
-        return this.http.patch<Response>(`http://localhost:3000/api/users/${userId}`, userData, { headers });
+        return this.http.patch<Response>(`http://3.84.39.132/api/users/${userId}`, userData, { headers });
     }
     
     
@@ -66,7 +66,7 @@ export class UserService {
         const headers = new HttpHeaders({
             'X-Token': token ? token : '',
         });
-        return this.http.delete<Response>(`http://localhost:3000/api/users/${userId}`, { headers });
+        return this.http.delete<Response>(`http://3.84.39.132/api/users/${userId}`, { headers });
     }
     
     
